@@ -1,14 +1,24 @@
 from google import genai
-# from fetch_github_info import get_github_user_data
-# from fetch_linkedin_info import get_linkedin_profile_data
-# from fetch_resume_info import get_resume_data
+from fetch_github_info import get_github_user_data
+from fetch_linkedin_info import get_linkedin_profile_data
+from fetch_resume_info import get_resume_data
 
 
-with open("cache.txt") as f:
-    context = f.read().strip()
+# with open("cache.txt") as f:
+#     context = f.read().strip()
 
 with open("gemini_api.txt") as f:
     API_KEY = f.read().strip()
+
+context = """ """
+github_data = get_github_user_data()
+linkedin_data = get_linkedin_profile_data()
+resume_data = get_resume_data("resume.pdf")
+
+context += f"\n\nHere is the github data: {github_data}\n\n"
+context += f"Here is the linkedin data: {linkedin_data}\n\n"
+context += f"Here is the resume data: {resume_data}\n\n"
+
 
 client = genai.Client(api_key=API_KEY)
 chat = client.chats.create(model="gemini-2.0-flash")

@@ -1,7 +1,6 @@
 import requests
 import json
 
-
 def get_linkedin_profile_data():
     with open('proxy_curl_api.txt', 'r') as f:
         api_key = f.read().strip()
@@ -91,8 +90,3 @@ Phone: {profile_data.get('personal_contact_info', {}).get('phone_number', 'N/A')
 
     else:
         return f"Error fetching LinkedIn profile: {response.status_code} {response.text}"
-
-
-if __name__ == "__main__":
-    profile_info = get_linkedin_profile_data()
-    print(profile_info)

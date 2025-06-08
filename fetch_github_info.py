@@ -1,24 +1,15 @@
 import requests
 
 def get_github_user_data(token=None):
-
     GITHUB_API = "https://api.github.com"
     PER_PAGE = 1000
+    output = ""
 
     USERNAME = input("Enter your GitHub username: ").strip()
     username = USERNAME
 
     with open('github_token.txt', 'r') as f:
         token = f.read().strip()
-    """
-    Fetches and prints comprehensive public data for a given GitHub username.
-
-    Args:
-        username (str): The GitHub username to fetch data for.
-        token (str, optional): A personal access token for authenticated requests
-                               to avoid rate limiting and access public data
-                               more reliably. Defaults to None.
-    """
 
     def github_api_get(url, token=None, params=None):
         headers = {}
@@ -28,7 +19,6 @@ def get_github_user_data(token=None):
         if response.status_code == 200:
             return response.json()
         else:
-            print(f"Error fetching {url}: {response.status_code} {response.text}")
             return None
 
     def fetch_all_pages(url, token=None, params=None):
@@ -46,7 +36,6 @@ def get_github_user_data(token=None):
             page += 1
         return all_items
 
-    # Data fetching functions (nested to keep them within the scope of get_github_user_data)
     def fetch_user_profile(username, token=None):
         url = f"{GITHUB_API}/users/{username}"
         return github_api_get(url, token)
@@ -79,86 +68,81 @@ def get_github_user_data(token=None):
         url = f"{GITHUB_API}/repos/{owner}/{repo}/branches"
         return github_api_get(url, token)
 
-    # Main logic moved inside the function
     profile = fetch_user_profile(username, token)
     if not profile:
-        print(f"Failed to get user profile for {username}.")
-        return
+        return f"Failed to get user profile for {username}."
 
-    print(f"--- Profile for {username} ---")
+    output += f"--- Profile for {username} ---\n"
     for k in ['login', 'id', 'name', 'company', 'blog', 'location', 'email', 'bio', 'twitter_username', 'public_repos',
               'followers', 'following', 'created_at']:
-        print(f"{k}: {profile.get(k)}")
+        output += f"{k}: {profile.get(k)}\n"
 
-    print("\n--- Organizations ---")
+    output += "\n--- Organizations ---\n"
     orgs = fetch_orgs(username, token) or []
     if orgs:
         for org in orgs:
-            print(f"- {org.get('login')} ({org.get('description')})")
+            output += f"- {org.get('login')} ({org.get('description')})\n"
     else:
-        print("No public organizations found.")
+        output += "No public organizations found.\n"
 
-    print("\n--- Public Repositories ---")
+    output += "\n--- Public Repositories ---\n"
     repos = fetch_repos(username, token) or []
     if repos:
         for repo in repos:
-            print(f"\nRepo: {repo.get('name')}")
-            print(f"  Description: {repo.get('description')}")
-            print(f"  URL: {repo.get('html_url')}")
-            print(f"  Language: {repo.get('language')}")
-            print(f"  Stars: {repo.get('stargazers_count')}")
-            print(f"  Forks: {repo.get('forks_count')}")
-            print(f"  Open Issues: {repo.get('open_issues_count')}")
-            print(f"  Created at: {repo.get('created_at')}")
-            print(f"  Updated at: {repo.get('updated_at')}")
-            print(f"  Default Branch: {repo.get('default_branch')}")
+            output += f"\nRepo: {repo.get('name')}\n"
+            output += f"  Description: {repo.get('description')}\n"
+            output += f"  URL: {repo.get('html_url')}\n"
+            output += f"  Language: {repo.get('language')}\n"
+            output += f"  Stars: {repo.get('stargazers_count')}\n"
+            output += f"  Forks: {repo.get('forks_count')}\n"
+            output += f"  Open Issues: {repo.get('open_issues_count')}\n"
+            output += f"  Created at: {repo.get('created_at')}\n"
+            output += f"  Updated at: {repo.get('updated_at')}\n"
+            output += f"  Default Branch: {repo.get('default_branch')}\n"
 
-            # Languages breakdown
             languages = fetch_languages(username, repo.get('name'), token)
             if languages:
-                print("  Languages breakdown:")
+                output += "  Languages breakdown:\n"
                 for lang, bytes_count in languages.items():
-                    print(f"    {lang}: {bytes_count} bytes")
+                    output += f"    {lang}: {bytes_count} bytes\n"
             else:
-                print("  No language breakdown available.")
+                output += "  No language breakdown available.\n"
 
-            # Branches
             branches = fetch_branches(username, repo.get('name'), token)
             if branches:
                 branch_names = [b['name'] for b in branches]
-                print(f"  Branches: {', '.join(branch_names)}")
+                output += f"  Branches: {', '.join(branch_names)}\n"
             else:
-                print("  No branches found.")
+                output += "  No branches found.\n"
 
-            # Recent commits (limit to 5 latest)
             commits = fetch_commits(username, repo.get('name'), token)
             if commits:
-                print("  Latest commits:")
+                output += "  Latest commits:\n"
                 for c in commits[:5]:
                     sha = c.get('sha')
                     message = c.get('commit', {}).get('message', '').split('\n')[0]
                     date = c.get('commit', {}).get('author', {}).get('date')
-                    print(f"    {sha[:7]}: {message} ({date})")
+                    output += f"    {sha[:7]}: {message} ({date})\n"
             else:
-                print("  No commits found.")
+                output += "  No commits found.\n"
     else:
-        print("No public repositories found.")
+        output += "No public repositories found.\n"
 
-    print("\n--- Public Gists ---")
+    output += "\n--- Public Gists ---\n"
     gists = fetch_gists(username, token) or []
     if gists:
         for gist in gists:
-            print(f"- {gist.get('html_url')}: {gist.get('description') or 'No description'}")
+            output += f"- {gist.get('html_url')}: {gist.get('description') or 'No description'}\n"
     else:
-        print("No public gists found.")
+        output += "No public gists found.\n"
 
-    print("\n--- Recent Public Events ---")
+    output += "\n--- Recent Public Events ---\n"
     events = fetch_events(username, token) or []
     if events:
-        for event in events[:10]:  # show latest 10 events
+        for event in events[:10]:
             repo_name = event.get('repo', {}).get('name', 'N/A')
-            print(f"- {event.get('type')} at {event.get('created_at')} in repo {repo_name}")
+            output += f"- {event.get('type')} at {event.get('created_at')} in repo {repo_name}\n"
     else:
-        print("No recent public events found.")
+        output += "No recent public events found.\n"
 
-get_github_user_data()
+    return output
