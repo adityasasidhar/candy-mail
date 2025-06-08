@@ -93,3 +93,303 @@ AWARDS & ACHIEVEMENTS
 •Top 10: International Robotics Competition (2018)
 •Achieved notable outcomes in multiple inter-university competitions.
 •Top 10 percent Finisher in 90%+ of Hackathons Participated
+
+
+--- Profile for adityasasidhar ---
+login: adityasasidhar
+id: 160115512
+name: Aditya Sasidhar
+company: Vellore Institute of Technology
+blog:
+location: India
+email: None
+bio: I like to build stuff using python and I don't like leetcode problems
+twitter_username: None
+public_repos: 13
+followers: 4
+following: 13
+created_at: 2024-02-15T09:00:31Z
+
+--- Organizations ---
+No public organizations found.
+
+--- Public Repositories ---
+
+Repo: adityasasidhar
+  Description: Config files for my GitHub profile.
+  URL: https://github.com/adityasasidhar/adityasasidhar
+  Language: None
+  Stars: 1
+  Forks: 0
+  Open Issues: 0
+  Created at: 2024-06-08T16:21:21Z
+  Updated at: 2025-05-29T17:01:03Z
+  Default Branch: main
+  No language breakdown available.
+  Branches: main
+  Latest commits:
+    43c6f79: Update README.md (2025-05-29T17:00:58Z)
+    89bcafe: Update README.md (2025-05-10T09:17:52Z)
+    344eab7: Update README.md (2025-02-08T09:20:27Z)
+    d7b4bff: Update README.md (2025-02-08T09:20:04Z)
+    bd54e05: Update README.md (2025-02-08T09:18:33Z)
+
+Repo: DeepCodeX
+  Description: None
+  URL: https://github.com/adityasasidhar/DeepCodeX
+  Language: None
+  Stars: 0
+  Forks: 0
+  Open Issues: 0
+  Created at: 2025-05-08T04:18:41Z
+  Updated at: 2025-05-08T04:18:41Z
+  Default Branch: main
+  No language breakdown available.
+  No branches found.
+Error fetching https://api.github.com/repos/adityasasidhar/DeepCodeX/commits: 409 {"message":"Git Repository is empty.","documentation_url":"https://docs.github.com/rest/commits/commits#list-commits","status":"409"}
+  No commits found.
+
+Repo: efficient-mnist-classsifier-using--tf
+  Description: None
+  URL: https://github.com/adityasasidhar/efficient-mnist-classsifier-using--tf
+  Language: Jupyter Notebook
+  Stars: 0
+  Forks: 0
+  Open Issues: 0
+  Created at: 2025-06-06T08:05:31Z
+  Updated at: 2025-06-06T16:14:18Z
+  Default Branch: main
+  Languages breakdown:
+    Jupyter Notebook: 627098 bytes
+  Branches: main
+  Latest commits:
+    cae5bc0: first commit (2025-06-06T07:50:32Z)
+
+Repo: fun-with-pygame
+  Description: None
+  URL: https://github.com/adityasasidhar/fun-with-pygame
+  Language: Python
+  Stars: 0
+  Forks: 0
+  Open Issues: 0
+  Created at: 2025-05-07T16:47:29Z
+  Updated at: 2025-05-07T17:22:35Z
+  Default Branch: main
+  Languages breakdown:
+    Python: 19082 bytes
+  Branches: main
+  Latest commits:
+    81e723f: complete (2025-05-07T17:22:26Z)
+    617c76d: complete (2025-05-07T17:20:05Z)
+    fd12dd4: small commit (2025-05-07T16:46:10Z)
+
+Repo: Info-finder
+  Description: None
+  URL: https://github.com/adityasasidhar/Info-finder
+  Language: Python
+  Stars: 0
+  Forks: 0
+  Open Issues: 0
+  Created at: 2025-05-08T11:46:49Z
+  Updated at: 2025-05-09T07:20:55Z
+  Default Branch: main
+  Languages breakdown:
+    Python: 10343 bytes
+    HTML: 4102 bytes
+  Branches: main
+  Latest commits:
+    3b2064c: Merge remote-tracking branch 'origin/main' (2025-05-09T07:20:47Z)
+    8185bc8: dd (2025-05-08T11:52:18Z)
+    281ea7e: Delete __pycache__ directory (2025-05-08T11:53:16Z)
+    6fa8f0a: dd (2025-05-08T11:52:18Z)
+    dfb9b72: hahah (2025-05-08T11:45:39Z)
+
+Repo: neural-networks-from-scratch
+  Description: None
+  URL: https://github.com/adityasasidhar/neural-networks-from-scratch
+  Language: Python
+  Stars: 0
+  Forks: 0
+  Open Issues: 0
+  Created at: 2025-06-05T19:31:20Z
+  Updated at: 2025-06-05T19:37:29Z
+  Default Branch: main
+  Languages breakdown:
+    Python: 8352 bytes
+  Branches: main
+  Latest commits:
+    8c1b3ec: added older practice code (2025-06-05T19:37:03Z)
+    c0c8516: a small neural network built from scratch (2025-06-05T19:30:47Z)
+
+Repo: Project-Rim
+  Description: None
+  URL: https://github.com/adityasasidhar/Project-Rim
+  Language: Python
+  Stars: 0
+  Forks: 0
+  Open Issues: 0
+  Created at: 2024-12-22T07:28:01Z
+  Updated at: 2024-12-28T06:42:07Z
+  Default Branch: main
+  Languages breakdown:
+    Python: 15855 bytes
+    CSS: 3023 bytes
+    JavaScript: 2126 bytes
+    HTML: 927 bytes
+  Branches: main
+  Latest commits:
+    6d5feac: fbe (2024-12-28T06:42:02Z)
+    18c9d2c: added mor images to the director (2024-12-25T10:42:50Z)
+    0a88d12: hah (2024-12-24T10:03:57Z)
+    02557e7: ha (2024-12-23T14:25:49Z)
+    d13aa32: resolved all erros (2024-12-23T05:36:52Z)
+
+Repo: Sherlock
+  Description: None
+  URL: https://github.com/adityasasidhar/Sherlock
+  Language: Python
+  Stars: 0
+  Forks: 0
+  Open Issues: 0
+  Created at: 2025-02-23T19:09:25Z
+  Updated at: 2025-03-23T13:06:23Z
+  Default Branch: master
+  Languages breakdown:
+    Python: 20708 bytes
+  Branches: master
+  Latest commits:
+    69aab31: bruv (2025-03-23T13:06:12Z)
+    4df8756: whoo (2025-03-15T14:03:52Z)
+    63365df: worked on a small change to the wbs.py file and made minor adjustments to the main app.py file (2025-02-25T13:13:13Z)
+    d78c567: debugged these shitty bugs (2025-02-25T10:00:05Z)
+    9bab52b: in a meeting (2025-02-24T16:31:10Z)
+
+Repo: Student-Performance-Ananlysis
+  Description: None
+  URL: https://github.com/adityasasidhar/Student-Performance-Ananlysis
+  Language: Jupyter Notebook
+  Stars: 1
+  Forks: 0
+  Open Issues: 0
+  Created at: 2025-04-18T09:38:56Z
+  Updated at: 2025-04-18T12:37:36Z
+  Default Branch: main
+  Languages breakdown:
+    Jupyter Notebook: 1374491 bytes
+  Branches: main
+  Latest commits:
+    b80b820: added a prediction file too (2025-04-18T12:31:56Z)
+    7ce3578: added a prediction file too (2025-04-18T12:30:53Z)
+    d2dea79: truned it into an analysis prject (2025-04-18T10:19:44Z)
+    88dad1e: fixed the readme a bit (2025-04-18T09:57:39Z)
+    8b010ad: Delete README.ipynb (2025-04-18T09:56:48Z)
+
+Repo: ToDo
+  Description: None
+  URL: https://github.com/adityasasidhar/ToDo
+  Language: None
+  Stars: 0
+  Forks: 0
+  Open Issues: 0
+  Created at: 2025-05-20T10:03:58Z
+  Updated at: 2025-05-20T10:03:58Z
+  Default Branch: main
+  Languages breakdown:
+    JavaScript: 35792 bytes
+    CSS: 14208 bytes
+    HTML: 10060 bytes
+    Dockerfile: 650 bytes
+    Shell: 457 bytes
+  Branches: main
+  Latest commits:
+    fc50668: a king without a crown (2025-05-20T05:12:17Z)
+    4b3e844: trciks up my sleeve... (2025-05-19T18:23:45Z)
+
+Repo: Trojanix
+  Description: None
+  URL: https://github.com/adityasasidhar/Trojanix
+  Language: Python
+  Stars: 0
+  Forks: 0
+  Open Issues: 0
+  Created at: 2025-01-22T16:24:29Z
+  Updated at: 2025-05-29T04:57:41Z
+  Default Branch: main
+  Languages breakdown:
+    Python: 84460134 bytes
+    Cython: 2511850 bytes
+    C: 693902 bytes
+    C++: 689770 bytes
+    JavaScript: 44292 bytes
+    Fortran: 39272 bytes
+    Meson: 37362 bytes
+    CSS: 24673 bytes
+    PowerShell: 9033 bytes
+    Smarty: 8486 bytes
+    Roff: 5377 bytes
+    HTML: 4421 bytes
+    Shell: 3167 bytes
+    Lua: 139 bytes
+  Branches: main
+  Latest commits:
+    1721f45: Delete src/prototype.py (2025-05-29T04:57:38Z)
+    601cc73: Delete src/app.py (2025-05-29T04:57:22Z)
+    5143ebe: revisting my little project and trying to make it more useful (2025-03-31T15:00:39Z)
+    d8fbb40: Update readme.md (2025-01-24T18:15:31Z)
+    949a902: Update readme.md (2025-01-24T18:14:46Z)
+
+Repo: Well-Weather
+  Description: None
+  URL: https://github.com/adityasasidhar/Well-Weather
+  Language: Python
+  Stars: 0
+  Forks: 0
+  Open Issues: 0
+  Created at: 2024-12-28T06:34:28Z
+  Updated at: 2024-12-28T06:40:06Z
+  Default Branch: main
+  Languages breakdown:
+    Python: 15336 bytes
+    HTML: 6459 bytes
+    JavaScript: 3511 bytes
+    CSS: 2389 bytes
+  Branches: main
+  Latest commits:
+    3264bd4: fhdb (2024-12-28T06:37:04Z)
+    171c5f7: first commit after fixing thr isse pertaining to forking (2024-12-28T06:33:09Z)
+    d3604cf: Initial commit (2024-12-28T06:34:28Z)
+
+Repo: Zuck-your-very-own-AI-hacker-buddy
+  Description: None
+  URL: https://github.com/adityasasidhar/Zuck-your-very-own-AI-hacker-buddy
+  Language: Python
+  Stars: 0
+  Forks: 0
+  Open Issues: 0
+  Created at: 2025-05-23T17:12:15Z
+  Updated at: 2025-05-24T05:55:28Z
+  Default Branch: main
+  Languages breakdown:
+    Python: 6911 bytes
+  Branches: main
+  Latest commits:
+    e0943ac: fixing some thigs (2025-05-24T05:55:21Z)
+    04e3c10: added mit license (2025-05-24T05:51:44Z)
+    a3ab90b: haha (2025-05-24T05:49:57Z)
+    5993a9e: haha (2025-05-24T05:39:01Z)
+    3afb119: Merge remote-tracking branch 'origin/main' (2025-05-24T05:19:02Z)
+
+--- Public Gists ---
+No public gists found.
+
+--- Recent Public Events ---
+- PushEvent at 2025-06-06T16:14:18Z in repo adityasasidhar/efficient-mnist-classsifier-using--tf
+- CreateEvent at 2025-06-06T08:07:14Z in repo adityasasidhar/efficient-mnist-classsifier-using--tf
+- CreateEvent at 2025-06-06T08:05:33Z in repo adityasasidhar/efficient-mnist-classsifier-using--tf
+- PushEvent at 2025-06-05T19:37:29Z in repo adityasasidhar/neural-networks-from-scratch
+- CreateEvent at 2025-06-05T19:32:30Z in repo adityasasidhar/neural-networks-from-scratch
+- CreateEvent at 2025-06-05T19:31:21Z in repo adityasasidhar/neural-networks-from-scratch
+- WatchEvent at 2025-06-05T19:08:48Z in repo fabacab/awesome-cybersecurity-blueteam
+- PushEvent at 2025-05-29T17:01:00Z in repo adityasasidhar/adityasasidhar
+- PushEvent at 2025-05-29T04:57:39Z in repo adityasasidhar/Trojanix
+- PushEvent at 2025-05-29T04:57:23Z in repo adityasasidhar/Trojanix

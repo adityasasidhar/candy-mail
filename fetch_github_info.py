@@ -160,3 +160,5 @@ def get_github_user_data(token=None):
             print(f"- {event.get('type')} at {event.get('created_at')} in repo {repo_name}")
     else:
         print("No recent public events found.")
+
+get_github_user_data()
