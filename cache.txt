@@ -1,0 +1,95 @@
+==== LinkedIn Profile ====
+Name: Aditya Sasidhar
+Headline: A cybersecurity enthusiast and an AIML dev | CSE AIML @ VIT Bhopal
+About/Bio: Not available
+Location: None
+Profile URL: aditya-sasidhar-2399bb27a
+Profile Picture: https://s3.us-west-000.backblazeb2.com/proxycurl/person/aditya-sasidhar-2399bb27a/profile?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0004d7f56a0400b0000000001%2F20250608%2Fus-west-000%2Fs3%2Faws4_request&X-Amz-Date=20250608T082600Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=5f33bbbd9ab1119d0b7651760834d4d310abf56a68e5a4059aea4980c859dec6
+Email: N/A
+Phone: N/A
+
+== Experiences ==
+- Intern at The Red Users (None - Present)
+- Prompt Engineer at Outlier (None - Present)
+
+== Education ==
+
+== Skills ==
+- Convolutional Neural Networks (CNN)
+- Cloud Computing
+- Front-End Development
+- JavaScript
+- Pygame
+- Large Language Model Operations (LLMOps)
+- Game AI
+- Data Science
+- Debian
+- BERT (Language Model)
+- Transformers
+- Linear Algebra
+- Computer Networking
+- OSI Model
+- Artificial Neural Networks
+- Data Engineering
+- PyTorch
+- Information Extraction
+- Statistics
+- Tkinter
+
+== Projects ==
+No projects listed.
+
+== Certifications ==
+- Fine Tune BERT for Text Classification with TensorFlow from None
+- Cloud Computing from None
+- Supervised Learning with Neural Networks from None
+- Introduction to Generative AI from None
+- Introduction to Image Generation from None
+- Python Programming Essentials from None
+- MATLAB Certified from None
+
+== Languages ==
+- English
+- French
+- Hindi
+- Telugu
+
+Aditya Sasidhar
+New Delhi | +91 74285 64847 | telikicherlaadityasasidhar@gmail.com
+LinkedIn | GitHub
+EDUCATION
+Vellore Institute of Technology  2023– Present
+Bachelor of Technology in Computer Science (specialiation in Artificial Intelligence and Machine Learning)
+Current GPA: 8.04/10
+EXPERIENCE & PROJECTS
+The Red Users – Cybersecurity Intern | Feb 2025 – Mar 2025
+•Implemented network and web security measures, identified SAP vulnerabilities, and analyzed traffic with
+Wireshark to detect and mitigate threats, learnt about potential threats and gained valuable insights.
+SafeSurf Junior – MP Police Cyber Safety Awareness Hackathon (3 rd Place) | 2024 – 2025
+•Developed an AI based browser extension to filter harmful content for children, reducing exposure by ~90%,
+and implemented an automated alert portal to notify law enforcement of potential legal violations.
+TrojaNix - IIT Madras Malware Analysis Hackathon (Finalist) | 2023 – 2024
+•Trained ML and DL models for malware classification, achieving ~98% detection accuracy.
+•Analyzed large malware datasets, refining features for improved precision and employing unsupervised
+methods for data enrichment.
+International Robotics Competition (Group Leader) | 2016 – 2018
+•Led a five-member team to design and build competitive robotics models, placing in the top 10 out of 150+
+teams.Coordinated tasks and timelines, ensuring on-time project completion for international events.
+   CORE SKILLS
+•Programming Languages:  Python, C, C++, Java, HTML, CSS, Javascript, MATLAB
+•Machine  Learning  &  Data  Science:  Scikit-learn,  Logistic  Regression,  SVM,  Random  Forest,  Gradient
+Boosting, XGBoost, LightGBM, K-Means, DBSCAN, PCA, t-SNE, Decision Trees, Naïve Bayes, KNN,
+Lasso, Ridge, SVR, Hyperparameter Tuning, Cross-Validation, Model Evaluation, Feature Engineering,
+Dimensionality Reduction
+•Deep Learning & Generative AI:  TensorFlow, Keras, Pytorch, Transformers, Hugging Face, LSTMs, GRUs,
+CNNs, Diffusion Models, BERT, GPT, Stable Diffusion, LoRA, Attention Mechanisms, Transfer Learning,
+Model Fine-Tuning, Tokenization, Prompt Engineering, Generative AI, Gemini API
+•Data Analysis & Visualization:  NumPy, Pandas, Matplotlib, Seaborn, SciPy, Plotly
+•Cybersecurity: hashlib, pefile, Wireshark, Basic Pen-testing, Computer Networks
+•Soft Skills: Time Management, Technical Communication, Analytical Thinking, Team Leadership, Curiosity
+AWARDS & ACHIEVEMENTS
+•3rd Place: MP Police Cyber Safety Awareness Hackathon (2025)
+•Finalist: IIT Madras Malware Analysis Hackathon (2025)
+•Top 10: International Robotics Competition (2018)
+•Achieved notable outcomes in multiple inter-university competitions.
+•Top 10 percent Finisher in 90%+ of Hackathons Participated
