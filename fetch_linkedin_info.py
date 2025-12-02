@@ -38,23 +38,22 @@ def get_linkedin_profile_data():
 
     if response.status_code == 200:
         profile_data = response.json()
-
         about_text = profile_data.get("about") or "Not available"
         projects = profile_data.get("projects", [])
 
         output = f"""
-==== LinkedIn Profile ====
-Name: {profile_data.get('full_name')}
-Headline: {profile_data.get('headline')}
-About/Bio: {about_text}
-Location: {profile_data.get('location')}
-Profile URL: {profile_data.get('public_identifier')}
-Profile Picture: {profile_data.get('profile_pic_url')}
-Email: {profile_data.get('personal_contact_info', {}).get('email', 'N/A')}
-Phone: {profile_data.get('personal_contact_info', {}).get('phone_number', 'N/A')}
-
-== Experiences ==
-"""
+                ==== LinkedIn Profile ====
+                Name: {profile_data.get('full_name')}
+                Headline: {profile_data.get('headline')}
+                About/Bio: {about_text}
+                Location: {profile_data.get('location')}
+                Profile URL: {profile_data.get('public_identifier')}
+                Profile Picture: {profile_data.get('profile_pic_url')}
+                Email: {profile_data.get('personal_contact_info', {}).get('email', 'N/A')}
+                Phone: {profile_data.get('personal_contact_info', {}).get('phone_number', 'N/A')}
+                                                                                                   
+                ==== Experiences ====
+                """
         for exp in profile_data.get("experiences", []):
             output += f"- {exp.get('title')} at {exp.get('company')} ({exp.get('start_date')} - {exp.get('end_date') or 'Present'})\n"
 
