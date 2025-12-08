@@ -4,7 +4,7 @@
         // Get the entire visible text of the page
         const fullText = document.body.innerText;
 
-          let data = {
+        let data = {
             url: url,
             platform: url.includes("linkedin.com") ? "LinkedIn" : (url.includes("github.com") ? "GitHub" : "Web"),
             full_text: fullText
