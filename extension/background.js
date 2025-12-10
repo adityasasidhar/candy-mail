@@ -73,45 +73,41 @@ async function generateEmail(pageData, settings) {
 
 // Build the prompt for email generation
 function buildPrompt(pageData, resume, personalNote) {
-    return `You are drafting a cold email.
+    return `You are a specialized cold email writer.
+     You're main job is to write cold emails for the SENDER to the RECIPIENT. I want you to write a 
+     great email for the person to the company and the job description that is being provided to you, I want you to
+     take the resume into account while writing the email, make sure you are making the email personal and concise.
+     Try to personalize mail by using web page content and mentioning them
+    
+    ---
 
-## IMPORTANT: Understand the roles
-- **SENDER (the person WRITING the email)**: The user whose resume/profile is provided below.
-- **RECIPIENT (the person RECEIVING the email)**: The person or company shown on the webpage content below.
+    ## SENDER's Resume/Profile:
+    ${resume || "Not provided"}
 
-The email is FROM the sender TO the recipient. Do NOT confuse these roles.
+    ---
 
----
+    ## RECIPIENT's Information (from the webpage being viewed):
+    Platform: ${pageData.platform || "Unknown"}
+    URL: ${pageData.url || "Unknown"}
 
-## RECIPIENT's Information (from the webpage being viewed):
-Platform: ${pageData.platform || "Unknown"}
-URL: ${pageData.url || "Unknown"}
+    Webpage Content (about the RECIPIENT):
+    ${(pageData.full_text || "")}
 
-Webpage Content (about the RECIPIENT):
-${(pageData.full_text || "").substring(0, 12000)}
+    ## Additional Instructions from the SENDER:
+    ${personalNote || "None"}
 
----
+    ---
 
-## SENDER's Resume/Profile (the person writing this email):
-${resume || "Not provided"}
+    ## Task:
+    Write a cold email FROM the sender TO the recipient. The email should:
+    1. Be addressed to the recipient (the person/company from the webpage)
+    2. Introduce the sender (based on their resume)
+    3. Reference specific details from the recipient's profile/page to show genuine interest
+    4. Highlight relevant connections between the sender's background and the recipient
+    5. Be concise, professional, and engaging
+    6. Have a clear but soft call-to-action
 
----
-
-## Additional Instructions from the SENDER:
-${personalNote || "None"}
-
----
-
-## Task:
-Write a cold email FROM the sender TO the recipient. The email should:
-1. Be addressed to the recipient (the person/company from the webpage)
-2. Introduce the sender (based on their resume)
-3. Reference specific details from the recipient's profile/page to show genuine interest
-4. Highlight relevant connections between the sender's background and the recipient
-5. Be concise, professional, and engaging
-6. Have a clear but soft call-to-action
-
-Provide ONLY the email body, no subject line. Start directly with the greeting (e.g., "Hi [Recipient's Name]," or "Dear [Name],").`;
+    Provide ONLY the email body, no subject line. Start directly with the greeting (e.g., "Hi [Recipient's Name]," or "Dear [Name],").`;
 }
 
 // Listen for messages from popup
