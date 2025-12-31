@@ -64,14 +64,13 @@
       <h1>Candy Mail</h1>
       <p class="hero-subtitle">
         Craft personalized cold emails in seconds.<br>
-              Designed for professionals.
+        Designed for professionals.
       </p>
 
-      <!-- Chrome-style Download Button -->
-      <div class="chrome-install-wrapper">
-        <a href="downloads/candy-mail-extension-v1.0.zip" class="btn-chrome" download>
-          <div class="chrome-icon">
-            <svg viewBox="0 0 48 48" width="28" height="28">
+      <div class="download-buttons">
+        <a href="downloads/candy-mail-extension-v1.0.zip" class="btn-browser" download>
+          <div class="browser-icon">
+            <svg viewBox="0 0 48 48" width="24" height="24">
               <circle cx="24" cy="24" r="22" fill="#fff" />
               <path fill="#EA4335" d="M24 12c6.6 0 12 5.4 12 12h-12V12z" />
               <path fill="#4285F4" d="M24 24h12c0 6.6-5.4 12-12 12V24z" />
@@ -81,18 +80,32 @@
               <circle cx="24" cy="24" r="5" fill="#4285F4" />
             </svg>
           </div>
-          <div class="chrome-text">
-            <span class="chrome-action">Add to Chrome</span>
-            <span class="chrome-meta">Free • 2-min setup</span>
+          <div class="browser-text">
+            <span class="browser-action">Chrome</span>
+            <span class="browser-meta">& Chromium browsers</span>
           </div>
         </a>
+        <a href="downloads/candy-mail-firefox-v1.0.zip" class="btn-browser firefox" download>
+          <div class="browser-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="#FF7139">
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+              <circle cx="12" cy="12" r="6" fill="#FF7139" />
+            </svg>
+          </div>
+          <div class="browser-text">
+            <span class="browser-action">Firefox</span>
+            <span class="browser-meta">Add-on</span>
+          </div>
+        </a>
+      </div>
 
-        <div class="browser-compat">
-          <span class="compat-item">✓ Chrome</span>
-          <span class="compat-item">✓ Edge</span>
-          <span class="compat-item">✓ Brave</span>
-          <span class="compat-item">✓ Arc</span>
-        </div>
+      <div class="browser-compat">
+        <span class="compat-item">Chrome</span>
+        <span class="compat-item">Edge</span>
+        <span class="compat-item">Brave</span>
+        <span class="compat-item">Firefox</span>
+        <span class="compat-item">Arc</span>
       </div>
 
       <div class="hero-buttons">
@@ -259,7 +272,7 @@
       <div class="tech-logos">
         <div class="tech-logo">
           <div class="tech-logo-icon gemini">
-            <svg viewBox="0 0 24 24" width="40" height="40" fill="currentColor">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
             </svg>
           </div>
@@ -268,17 +281,38 @@
         </div>
         <div class="tech-logo">
           <div class="tech-logo-icon openai">
-            <svg viewBox="0 0 24 24" width="40" height="40" fill="currentColor">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
               <path
                 d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729z" />
             </svg>
           </div>
           <span class="tech-name">OpenAI</span>
-          <span class="tech-tag">GPT-4</span>
+          <span class="tech-tag">GPT-4o</span>
+        </div>
+        <div class="tech-logo">
+          <div class="tech-logo-icon anthropic">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+              <path d="M12 2L2 22h20L12 2zm0 6l6 12H6l6-12z" />
+            </svg>
+          </div>
+          <span class="tech-name">Anthropic</span>
+          <span class="tech-tag">Claude</span>
+        </div>
+        <div class="tech-logo">
+          <div class="tech-logo-icon mistral">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+              <rect x="3" y="3" width="7" height="7" />
+              <rect x="14" y="3" width="7" height="7" />
+              <rect x="3" y="14" width="7" height="7" />
+              <rect x="14" y="14" width="7" height="7" />
+            </svg>
+          </div>
+          <span class="tech-name">Mistral AI</span>
+          <span class="tech-tag">Large</span>
         </div>
         <div class="tech-logo">
           <div class="tech-logo-icon groq">
-            <svg viewBox="0 0 24 24" width="40" height="40" fill="currentColor">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
               <circle cx="12" cy="12" r="10" />
             </svg>
           </div>
@@ -391,12 +425,18 @@
         <div class="install-step">
           <div class="install-step-number">3</div>
           <div class="install-step-content">
-            <h3>🔧 Load in Chrome</h3>
+            <h3>Load in Browser</h3>
+            <p><strong>Chrome/Edge/Brave:</strong></p>
             <ol>
-              <li>Open Chrome and navigate to <code>chrome://extensions</code></li>
-              <li>Enable <strong>Developer mode</strong> (toggle in top right)</li>
-              <li>Click <strong>Load unpacked</strong></li>
-              <li>Select the extracted extension folder</li>
+              <li>Go to <code>chrome://extensions</code></li>
+              <li>Enable <strong>Developer mode</strong></li>
+              <li>Click <strong>Load unpacked</strong> → select folder</li>
+            </ol>
+            <p style="margin-top: 0.75rem;"><strong>Firefox:</strong></p>
+            <ol>
+              <li>Go to <code>about:debugging</code></li>
+              <li>Click <strong>This Firefox</strong></li>
+              <li>Click <strong>Load Temporary Add-on</strong> → select any file</li>
             </ol>
           </div>
         </div>
@@ -412,6 +452,12 @@
               </a>
               <a href="https://platform.openai.com/api-keys" target="_blank" class="api-link openai">
                 OpenAI Platform
+              </a>
+              <a href="https://console.anthropic.com/" target="_blank" class="api-link anthropic">
+                Anthropic Console
+              </a>
+              <a href="https://console.mistral.ai/" target="_blank" class="api-link mistral">
+                Mistral AI Console
               </a>
               <a href="https://console.groq.com/keys" target="_blank" class="api-link groq">
                 Groq Console <span class="api-tag">Free tier</span>

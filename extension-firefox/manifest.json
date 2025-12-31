@@ -1,0 +1,39 @@
+{
+    "manifest_version": 2,
+    "name": "Candy Mail",
+    "version": "1.0",
+    "description": "Draft personalized cold emails instantly from any profile or webpage.",
+    "permissions": [
+        "activeTab",
+        "storage",
+        "https://linkedin.com/*",
+        "https://api.linkedin.com/*"
+    ],
+    "icons": {
+        "16": "icons/icon16.png",
+        "32": "icons/icon32.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    },
+    "browser_action": {
+        "default_popup": "popup.html",
+        "default_title": "Draft Cold Email",
+        "default_icon": {
+            "16": "icons/icon16.png",
+            "32": "icons/icon32.png"
+        }
+    },
+    "options_ui": {
+        "page": "options.html",
+        "open_in_tab": true
+    },
+    "background": {
+        "scripts": ["background.js"]
+    },
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "candy-mail@example.com",
+            "strict_min_version": "109.0"
+        }
+    }
+}
