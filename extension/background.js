@@ -2,8 +2,8 @@
 const PROVIDERS = {
     gemini: {
         name: "Google Gemini",
-        models: ["gemini-2.5-flash", "gemini-2.5-pro", "gemini-2.0-flash"],
-        defaultModel: "gemini-2.5-flash",
+        models: ["gemini-2.0-flash", "gemini-1.5-flash", "gemini-1.5-pro"],
+        defaultModel: "gemini-2.0-flash",
         getEndpoint: (model) => `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
         buildRequest: (apiKey, prompt) => ({
             headers: { "Content-Type": "application/json", "x-goog-api-key": apiKey },
@@ -13,23 +13,54 @@ const PROVIDERS = {
     },
     openai: {
         name: "OpenAI",
-        models: ["gpt-4o", "gpt-4o-mini", "gpt-4-turbo", "gpt-3.5-turbo"],
+        models: ["gpt-4o", "gpt-4o-mini", "o1", "o1-mini", "o3-mini"],
         defaultModel: "gpt-4o-mini",
         getEndpoint: () => "https://api.openai.com/v1/chat/completions",
         buildRequest: (apiKey, prompt) => ({
             headers: { "Content-Type": "application/json", "Authorization": `Bearer ${apiKey}` },
-            body: JSON.stringify({ model: null, messages: [{ role: "user", content: prompt }] })  // model set later
+            body: JSON.stringify({ model: null, messages: [{ role: "user", content: prompt }] })
+        }),
+        parseResponse: (data) => data.choices?.[0]?.message?.content || ""
+    },
+    anthropic: {
+        name: "Anthropic",
+        models: ["claude-sonnet-4-20250514", "claude-3-5-sonnet-20241022", "claude-3-5-haiku-20241022"],
+        defaultModel: "claude-sonnet-4-20250514",
+        getEndpoint: () => "https://api.anthropic.com/v1/messages",
+        buildRequest: (apiKey, prompt) => ({
+            headers: {
+                "Content-Type": "application/json",
+                "x-api-key": apiKey,
+                "anthropic-version": "2023-06-01",
+                "anthropic-dangerous-direct-browser-access": "true"
+            },
+            body: JSON.stringify({
+                model: null,
+                max_tokens: 1024,
+                messages: [{ role: "user", content: prompt }]
+            })
+        }),
+        parseResponse: (data) => data.content?.[0]?.text || ""
+    },
+    mistral: {
+        name: "Mistral AI",
+        models: ["mistral-large-latest", "mistral-small-latest", "codestral-latest"],
+        defaultModel: "mistral-large-latest",
+        getEndpoint: () => "https://api.mistral.ai/v1/chat/completions",
+        buildRequest: (apiKey, prompt) => ({
+            headers: { "Content-Type": "application/json", "Authorization": `Bearer ${apiKey}` },
+            body: JSON.stringify({ model: null, messages: [{ role: "user", content: prompt }] })
         }),
         parseResponse: (data) => data.choices?.[0]?.message?.content || ""
     },
     groq: {
         name: "Groq",
-        models: ["llama-3.3-70b-versatile", "mixtral-8x7b-32768", "gemma2-9b-it"],
+        models: ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "mixtral-8x7b-32768"],
         defaultModel: "llama-3.3-70b-versatile",
         getEndpoint: () => "https://api.groq.com/openai/v1/chat/completions",
         buildRequest: (apiKey, prompt) => ({
             headers: { "Content-Type": "application/json", "Authorization": `Bearer ${apiKey}` },
-            body: JSON.stringify({ model: null, messages: [{ role: "user", content: prompt }] })  // model set later
+            body: JSON.stringify({ model: null, messages: [{ role: "user", content: prompt }] })
         }),
         parseResponse: (data) => data.choices?.[0]?.message?.content || ""
     }
@@ -49,7 +80,7 @@ async function generateEmail(pageData, settings, documents) {
     const endpoint = providerConfig.getEndpoint(selectedModel);
     const { headers, body } = providerConfig.buildRequest(apiKey, prompt);
 
-    // Inject model for OpenAI/Groq style APIs
+    // Inject model for APIs that need it
     let requestBody = JSON.parse(body);
     if (requestBody.model === null) {
         requestBody.model = selectedModel;
@@ -109,15 +140,15 @@ ${jd.description ? `Job Description Summary:\n${jd.description.substring(0, 3000
 - **Value-oriented**: Show what YOU bring to THEM, not just what you want.
 
 ## AVOID THESE ANTI-PATTERNS (instant delete triggers):
-❌ "I hope this email finds you well"
-❌ "I am writing to express my interest in..."
-❌ "I believe I would be a great fit"
-❌ "Please find my resume attached"
-❌ Starting with "My name is..."
-❌ Listing generic skills without context
-❌ Being overly formal or stiff
-❌ Using em dashes (—) excessively
-❌ Exclamation marks overuse
+- "I hope this email finds you well"
+- "I am writing to express my interest in..."
+- "I believe I would be a great fit"
+- "Please find my resume attached"
+- Starting with "My name is..."
+- Listing generic skills without context
+- Being overly formal or stiff
+- Using em dashes excessively
+- Exclamation marks overuse
 
 ## WINNING EMAIL STRUCTURE:
 

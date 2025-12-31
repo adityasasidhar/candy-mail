@@ -2,19 +2,31 @@
 const PROVIDERS = {
     gemini: {
         name: "Google Gemini",
-        models: ["gemini-2.5-flash", "gemini-2.5-pro", "gemini-2.0-flash"],
-        defaultModel: "gemini-2.5-flash",
+        models: ["gemini-2.0-flash", "gemini-1.5-flash", "gemini-1.5-pro"],
+        defaultModel: "gemini-2.0-flash",
         keyPlaceholder: "AIza..."
     },
     openai: {
         name: "OpenAI",
-        models: ["gpt-4o", "gpt-4o-mini", "gpt-4-turbo", "gpt-3.5-turbo"],
+        models: ["gpt-4o", "gpt-4o-mini", "o1", "o1-mini", "o3-mini"],
         defaultModel: "gpt-4o-mini",
         keyPlaceholder: "sk-..."
     },
+    anthropic: {
+        name: "Anthropic",
+        models: ["claude-sonnet-4-20250514", "claude-3-5-sonnet-20241022", "claude-3-5-haiku-20241022"],
+        defaultModel: "claude-sonnet-4-20250514",
+        keyPlaceholder: "sk-ant-..."
+    },
+    mistral: {
+        name: "Mistral AI",
+        models: ["mistral-large-latest", "mistral-small-latest", "codestral-latest"],
+        defaultModel: "mistral-large-latest",
+        keyPlaceholder: "..."
+    },
     groq: {
         name: "Groq",
-        models: ["llama-3.3-70b-versatile", "mixtral-8x7b-32768", "gemma2-9b-it"],
+        models: ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "mixtral-8x7b-32768"],
         defaultModel: "llama-3.3-70b-versatile",
         keyPlaceholder: "gsk_..."
     }
@@ -96,12 +108,23 @@ function updateProviderUI() {
     config.models.forEach(model => {
         const option = document.createElement("option");
         option.value = model;
-        option.textContent = model;
+        option.textContent = formatModelName(model);
         if (model === config.defaultModel) {
             option.selected = true;
         }
         modelSelect.appendChild(option);
     });
+}
+
+// Format model name for display
+function formatModelName(model) {
+    // Make model names more readable
+    return model
+        .replace(/-/g, ' ')
+        .replace(/(\d{8})/, '') // Remove date suffixes
+        .replace(/latest/g, '(Latest)')
+        .replace(/exp/g, '(Experimental)')
+        .trim();
 }
 
 providerSelect.addEventListener("change", () => {
@@ -141,16 +164,18 @@ function createDocumentCard(doc, index) {
     card.className = "document-card";
     card.dataset.index = index;
 
-    // Icon based on file type
-    const icon = getFileIcon(doc.name);
-
     // Label select options
     const labelOptions = DOC_LABELS.map(label =>
         `<option value="${label}" ${doc.label === label ? 'selected' : ''}>${label}</option>`
     ).join("");
 
     card.innerHTML = `
-        <div class="doc-icon">${icon}</div>
+        <div class="doc-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+            </svg>
+        </div>
         <div class="doc-info">
             <div class="doc-name" title="${doc.name}">${doc.name}</div>
             <div class="doc-meta">
@@ -175,14 +200,6 @@ function createDocumentCard(doc, index) {
     });
 
     return card;
-}
-
-// Get file icon based on extension
-function getFileIcon(filename) {
-    if (filename.endsWith(".pdf")) return "📕";
-    if (filename.endsWith(".docx") || filename.endsWith(".doc")) return "📘";
-    if (filename.endsWith(".txt")) return "📄";
-    return "📋";
 }
 
 // Format character count

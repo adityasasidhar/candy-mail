@@ -4,43 +4,81 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Candy Mail - Draft personalized cold emails instantly from any profile or webpage using AI.">
+  <meta name="description"
+    content="Candy Mail - Draft personalized cold emails instantly from any profile or webpage using AI.">
   <meta name="keywords" content="cold email, AI, Chrome extension, email automation, personalized emails">
   <title>Candy Mail 🍬 - AI-Powered Cold Email Generator</title>
-  
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
+
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css">
-  
+
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/logo.png">
 </head>
 
 <body>
+  <!-- Navigation Header -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <span class="logo-emoji">🍬</span>
+        <span class="logo-text">Candy Mail</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+        <a href="#installation" class="nav-link">Install</a>
+        <a href="https://github.com/adityasasidhar/emails-are-getting-cold" target="_blank" class="nav-link nav-github">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+          </svg>
+        </a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#features" class="mobile-link">Features</a>
+    <a href="#how-it-works" class="mobile-link">How It Works</a>
+    <a href="#faq" class="mobile-link">FAQ</a>
+    <a href="#installation" class="mobile-link">Install</a>
+  </div>
+
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
-      <h1>🍬 Candy Mail</h1>
+      <p class="hero-eyebrow">Introducing</p>
+      <h1>Candy Mail</h1>
       <p class="hero-subtitle">
-        Draft personalized cold emails instantly from any profile or webpage using AI
+        Craft personalized cold emails in seconds.<br>
+              Designed for professionals.
       </p>
-      
+
       <!-- Chrome-style Download Button -->
       <div class="chrome-install-wrapper">
         <a href="downloads/candy-mail-extension-v1.0.zip" class="btn-chrome" download>
           <div class="chrome-icon">
             <svg viewBox="0 0 48 48" width="28" height="28">
-              <circle cx="24" cy="24" r="22" fill="#fff"/>
-              <path fill="#EA4335" d="M24 12c6.6 0 12 5.4 12 12h-12V12z"/>
-              <path fill="#4285F4" d="M24 24h12c0 6.6-5.4 12-12 12V24z"/>
-              <path fill="#34A853" d="M12 24c0-6.6 5.4-12 12-12v12H12z"/>
-              <path fill="#FBBC05" d="M24 24v12c-6.6 0-12-5.4-12-12h12z"/>
-              <circle cx="24" cy="24" r="8" fill="#fff"/>
-              <circle cx="24" cy="24" r="5" fill="#4285F4"/>
+              <circle cx="24" cy="24" r="22" fill="#fff" />
+              <path fill="#EA4335" d="M24 12c6.6 0 12 5.4 12 12h-12V12z" />
+              <path fill="#4285F4" d="M24 24h12c0 6.6-5.4 12-12 12V24z" />
+              <path fill="#34A853" d="M12 24c0-6.6 5.4-12 12-12v12H12z" />
+              <path fill="#FBBC05" d="M24 24v12c-6.6 0-12-5.4-12-12h12z" />
+              <circle cx="24" cy="24" r="8" fill="#fff" />
+              <circle cx="24" cy="24" r="5" fill="#4285F4" />
             </svg>
           </div>
           <div class="chrome-text">
@@ -48,7 +86,7 @@
             <span class="chrome-meta">Free • 2-min setup</span>
           </div>
         </a>
-        
+
         <div class="browser-compat">
           <span class="compat-item">✓ Chrome</span>
           <span class="compat-item">✓ Edge</span>
@@ -62,10 +100,44 @@
           <span>📖</span>
           Installation Guide
         </a>
-        <a href="https://github.com/adityasasidhar/candy-mail" target="_blank" class="btn btn-secondary">
+        <a href="https://github.com/adityasasidhar/emails-are-getting-cold" target="_blank" class="btn btn-secondary">
           <span>⭐</span>
           Star on GitHub
         </a>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+      <span class="scroll-text">Scroll to explore</span>
+      <div class="scroll-arrow">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 5v14M19 12l-7 7-7-7" />
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="section stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number" data-target="1000">0</div>
+          <div class="stat-label">Emails Generated</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-target="500">0</div>
+          <div class="stat-label">Happy Users</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-target="3">0</div>
+          <div class="stat-label">AI Providers</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-target="100">0</div>
+          <div class="stat-label">% Free</div>
+        </div>
       </div>
     </div>
   </section>
@@ -75,21 +147,23 @@
   <section class="section features" id="features">
     <div class="container">
       <div class="text-center">
+        <span class="section-badge">✨ Features</span>
         <h2>Powerful Features</h2>
         <p>Everything you need to craft perfect cold emails</p>
       </div>
-      
+
       <div class="features-grid">
         <div class="feature-card">
-          <div class="feature-icon">🌍</div>
+          <div class="feature-number">01</div>
           <h3 class="feature-title">Universal Context</h3>
           <p class="feature-description">
-            Works on any website - LinkedIn, GitHub, Twitter, company pages. The AI analyzes visible text to understand your recipient.
+            Works on any website - LinkedIn, GitHub, Twitter, company pages. The AI analyzes visible text to understand
+            your recipient.
           </p>
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon">🤖</div>
+          <div class="feature-number">02</div>
           <h3 class="feature-title">Multi-Provider Support</h3>
           <p class="feature-description">
             Choose between Google Gemini, OpenAI, or Groq APIs. Pick the model that works best for you.
@@ -97,7 +171,7 @@
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon">📄</div>
+          <div class="feature-number">03</div>
           <h3 class="feature-title">Resume Integration</h3>
           <p class="feature-description">
             Upload your PDF or DOCX resume once. It's automatically used to find connection points for every email.
@@ -105,7 +179,7 @@
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon">📝</div>
+          <div class="feature-number">04</div>
           <h3 class="feature-title">Personal Notes</h3>
           <p class="feature-description">
             Add custom instructions like "Keep it casual", "Mention I'm hiring", or "Ask for a coffee chat".
@@ -113,10 +187,19 @@
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon">🔒</div>
+          <div class="feature-number">05</div>
           <h3 class="feature-title">Privacy First</h3>
           <p class="feature-description">
             Your API key, resume, and notes are stored locally in your browser. Nothing is sent to our servers.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-number">06</div>
+          <h3 class="feature-title">Lightning Fast</h3>
+          <p class="feature-description">
+            Generate personalized emails in seconds. No more staring at a blank screen trying to craft the perfect
+            message.
           </p>
         </div>
       </div>
@@ -127,10 +210,11 @@
   <section class="section how-it-works" id="how-it-works">
     <div class="container">
       <div class="text-center">
+        <span class="section-badge">🚀 Quick Start</span>
         <h2>How It Works</h2>
         <p>Get started in 3 simple steps</p>
       </div>
-      
+
       <div class="steps">
         <div class="step">
           <div class="step-number">1</div>
@@ -140,6 +224,8 @@
           </p>
         </div>
 
+        <div class="step-connector"></div>
+
         <div class="step">
           <div class="step-number">2</div>
           <h3 class="step-title">Navigate to Profile</h3>
@@ -147,6 +233,8 @@
             Visit any LinkedIn, GitHub, or company page you want to reach out to
           </p>
         </div>
+
+        <div class="step-connector"></div>
 
         <div class="step">
           <div class="step-number">3</div>
@@ -163,24 +251,111 @@
   <section class="section tech-stack" id="tech-stack">
     <div class="container">
       <div class="text-center">
+        <span class="section-badge">🤖 AI Powered</span>
         <h2>Powered By Leading AI Providers</h2>
         <p>Choose your preferred LLM provider</p>
       </div>
-      
+
       <div class="tech-logos">
         <div class="tech-logo">
-          <div style="padding: 20px; font-size: 1.5rem; font-weight: 700; color: #8b5cf6;">
-            Google Gemini
+          <div class="tech-logo-icon gemini">
+            <svg viewBox="0 0 24 24" width="40" height="40" fill="currentColor">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+            </svg>
           </div>
+          <span class="tech-name">Google Gemini</span>
+          <span class="tech-tag">Recommended</span>
         </div>
         <div class="tech-logo">
-          <div style="padding: 20px; font-size: 1.5rem; font-weight: 700; color: #10a37f;">
-            OpenAI
+          <div class="tech-logo-icon openai">
+            <svg viewBox="0 0 24 24" width="40" height="40" fill="currentColor">
+              <path
+                d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729z" />
+            </svg>
           </div>
+          <span class="tech-name">OpenAI</span>
+          <span class="tech-tag">GPT-4</span>
         </div>
         <div class="tech-logo">
-          <div style="padding: 20px; font-size: 1.5rem; font-weight: 700; color: #f55036;">
-            Groq
+          <div class="tech-logo-icon groq">
+            <svg viewBox="0 0 24 24" width="40" height="40" fill="currentColor">
+              <circle cx="12" cy="12" r="10" />
+            </svg>
+          </div>
+          <span class="tech-name">Groq</span>
+          <span class="tech-tag">Ultra Fast</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section faq" id="faq">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-badge">❓ FAQ</span>
+        <h2>Frequently Asked Questions</h2>
+        <p>Got questions? We've got answers</p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Is my data safe and private?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Absolutely! Your API key, resume, and personal notes are stored <strong>locally in your browser</strong>
+              using Chrome's secure storage. We don't have servers - your data never leaves your machine except when
+              communicating directly with your chosen AI provider.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Which AI providers are supported?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Candy Mail supports <strong>Google Gemini</strong>, <strong>OpenAI (GPT-4)</strong>, and
+              <strong>Groq</strong>. You can switch between providers anytime in the settings. We recommend Gemini for
+              the best balance of quality and speed with a generous free tier.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Is Candy Mail really free?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes! Candy Mail is 100% free and open source under the MIT license. You only need to provide your own API
+              key from one of the supported providers. Both Gemini and Groq offer generous free tiers that should cover
+              most personal use cases.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Does it work on all websites?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes! Candy Mail analyzes the visible text on any webpage. It works especially well on profile pages
+              (LinkedIn, GitHub, Twitter) and company websites, but can extract context from virtually any page.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Can I customize the email style?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Absolutely! Use the "Personal Notes" field to add instructions like "Keep it casual", "Be formal",
+              "Mention I'm looking for internships", or any other customization. The AI will adapt the email to your
+              preferences.</p>
           </div>
         </div>
       </div>
@@ -191,53 +366,109 @@
   <section class="section installation" id="installation">
     <div class="container">
       <div class="text-center">
+        <span class="section-badge">📦 Setup</span>
         <h2>Installation Guide</h2>
         <p>Get up and running in minutes</p>
       </div>
-      
+
       <div class="install-steps">
         <div class="install-step">
-          <h3>📥 Step 1: Download the Extension</h3>
-          <p>Click the download button above to get the extension package.</p>
+          <div class="install-step-number">1</div>
+          <div class="install-step-content">
+            <h3>📥 Download the Extension</h3>
+            <p>Click the download button above to get the extension package.</p>
+          </div>
         </div>
 
         <div class="install-step">
-          <h3>📦 Step 2: Extract the ZIP</h3>
-          <p>Extract the downloaded ZIP file to a location on your computer.</p>
+          <div class="install-step-number">2</div>
+          <div class="install-step-content">
+            <h3>📦 Extract the ZIP</h3>
+            <p>Extract the downloaded ZIP file to a location on your computer.</p>
+          </div>
         </div>
 
         <div class="install-step">
-          <h3>🔧 Step 3: Load in Chrome</h3>
-          <p>1. Open Chrome and navigate to <code>chrome://extensions</code></p>
-          <p>2. Enable <strong>Developer mode</strong> (toggle in top right)</p>
-          <p>3. Click <strong>Load unpacked</strong></p>
-          <p>4. Select the extracted extension folder</p>
+          <div class="install-step-number">3</div>
+          <div class="install-step-content">
+            <h3>🔧 Load in Chrome</h3>
+            <ol>
+              <li>Open Chrome and navigate to <code>chrome://extensions</code></li>
+              <li>Enable <strong>Developer mode</strong> (toggle in top right)</li>
+              <li>Click <strong>Load unpacked</strong></li>
+              <li>Select the extracted extension folder</li>
+            </ol>
+          </div>
         </div>
 
         <div class="install-step">
-          <h3>🔑 Step 4: Configure Your API Key</h3>
-          <p>Get an API key from one of these providers:</p>
-          <ul style="margin-left: 2rem; color: var(--text-secondary);">
-            <li><a href="https://aistudio.google.com/app/apikey" target="_blank" style="color: var(--primary-light);">Google AI Studio</a> - Gemini API (free tier available)</li>
-            <li><a href="https://platform.openai.com/api-keys" target="_blank" style="color: var(--primary-light);">OpenAI Platform</a> - OpenAI API</li>
-            <li><a href="https://console.groq.com/keys" target="_blank" style="color: var(--primary-light);">Groq Console</a> - Groq API (free tier available)</li>
-          </ul>
+          <div class="install-step-number">4</div>
+          <div class="install-step-content">
+            <h3>🔑 Configure Your API Key</h3>
+            <p>Get an API key from one of these providers:</p>
+            <div class="api-links">
+              <a href="https://aistudio.google.com/app/apikey" target="_blank" class="api-link gemini">
+                Google AI Studio <span class="api-tag">Free tier</span>
+              </a>
+              <a href="https://platform.openai.com/api-keys" target="_blank" class="api-link openai">
+                OpenAI Platform
+              </a>
+              <a href="https://console.groq.com/keys" target="_blank" class="api-link groq">
+                Groq Console <span class="api-tag">Free tier</span>
+              </a>
+            </div>
+          </div>
         </div>
 
         <div class="install-step">
-          <h3>⚙️ Step 5: Set Up Extension</h3>
-          <p>1. Click the Candy Mail icon 🍬 in your toolbar</p>
-          <p>2. Click the Settings/Gear icon</p>
-          <p>3. Select your LLM provider and paste your API key</p>
-          <p>4. Upload your resume (PDF/DOCX) or paste text</p>
-          <p>5. (Optional) Add personal notes to customize tone</p>
-          <p>6. Click <strong>Save</strong></p>
+          <div class="install-step-number">5</div>
+          <div class="install-step-content">
+            <h3>⚙️ Set Up Extension</h3>
+            <ol>
+              <li>Click the Candy Mail icon 🍬 in your toolbar</li>
+              <li>Click the Settings/Gear icon</li>
+              <li>Select your LLM provider and paste your API key</li>
+              <li>Upload your resume (PDF/DOCX) or paste text</li>
+              <li>(Optional) Add personal notes to customize tone</li>
+              <li>Click <strong>Save</strong></li>
+            </ol>
+          </div>
         </div>
 
-        <div class="install-step">
-          <h3>🚀 Step 6: Start Generating Emails!</h3>
-          <p>Navigate to any profile page, click the Candy Mail icon, and generate your personalized email!</p>
+        <div class="install-step highlight">
+          <div class="install-step-number">🚀</div>
+          <div class="install-step-content">
+            <h3>Start Generating Emails!</h3>
+            <p>Navigate to any profile page, click the Candy Mail icon, and generate your personalized email!</p>
+          </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <h2>Ready to supercharge your outreach?</h2>
+        <p>Download Candy Mail now and start crafting personalized emails in seconds.</p>
+        <a href="downloads/candy-mail-extension-v1.0.zip" class="btn-chrome large" download>
+          <div class="chrome-icon">
+            <svg viewBox="0 0 48 48" width="32" height="32">
+              <circle cx="24" cy="24" r="22" fill="#fff" />
+              <path fill="#EA4335" d="M24 12c6.6 0 12 5.4 12 12h-12V12z" />
+              <path fill="#4285F4" d="M24 24h12c0 6.6-5.4 12-12 12V24z" />
+              <path fill="#34A853" d="M12 24c0-6.6 5.4-12 12-12v12H12z" />
+              <path fill="#FBBC05" d="M24 24v12c-6.6 0-12-5.4-12-12h12z" />
+              <circle cx="24" cy="24" r="8" fill="#fff" />
+              <circle cx="24" cy="24" r="5" fill="#4285F4" />
+            </svg>
+          </div>
+          <div class="chrome-text">
+            <span class="chrome-action">Download Now</span>
+            <span class="chrome-meta">Free • Open Source</span>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -245,14 +476,51 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-content">
-        <p>&copy; 2025 Candy Mail. Open Source under MIT License.</p>
-        <a href="https://github.com/adityasasidhar/emails-are-getting-cold" target="_blank">
-          View on GitHub →
-        </a>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="logo-emoji">🍬</span>
+            <span class="logo-text">Candy Mail</span>
+          </div>
+          <p class="footer-tagline">Draft personalized cold emails instantly with AI.</p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <a href="#features">Features</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#faq">FAQ</a>
+          <a href="#installation">Installation</a>
+        </div>
+
+        <div class="footer-links">
+          <h4>Resources</h4>
+          <a href="https://github.com/adityasasidhar/emails-are-getting-cold" target="_blank">GitHub</a>
+          <a href="https://aistudio.google.com/app/apikey" target="_blank">Get Gemini API Key</a>
+          <a href="https://platform.openai.com/api-keys" target="_blank">Get OpenAI API Key</a>
+          <a href="https://console.groq.com/keys" target="_blank">Get Groq API Key</a>
+        </div>
+
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <a href="#">MIT License</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>Made with ❤️ by <a href="https://github.com/adityasasidhar" target="_blank">Aditya</a></p>
+        <p>© 2025 Candy Mail. Open Source under MIT License.</p>
       </div>
     </div>
   </footer>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
 
   <!-- JavaScript -->
   <script src="script.js"></script>
