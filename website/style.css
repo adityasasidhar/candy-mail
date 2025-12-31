@@ -8,12 +8,12 @@
   --primary-dark: #d97706;
   --secondary: #8b5cf6;
   --accent: #ec4899;
-  
+
   /* Gradients */
   --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --gradient-hero: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 50%, #ec4899 100%);
   --gradient-card: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
-  
+
   /* Dark Theme */
   --bg-primary: #0f172a;
   --bg-secondary: #1e293b;
@@ -21,27 +21,27 @@
   --text-primary: #f1f5f9;
   --text-secondary: #cbd5e1;
   --text-muted: #94a3b8;
-  
+
   /* Borders & Effects */
   --border-color: rgba(148, 163, 184, 0.1);
   --glow: 0 0 20px rgba(139, 92, 246, 0.3);
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
-  
+
   /* Spacing */
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
   --spacing-md: 2rem;
   --spacing-lg: 4rem;
   --spacing-xl: 6rem;
-  
+
   /* Border Radius */
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 24px;
   --radius-xl: 32px;
-  
+
   /* Transitions */
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
@@ -72,7 +72,12 @@ body {
 /* ===================================
    Typography
    =================================== */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: var(--spacing-sm);
@@ -137,15 +142,22 @@ p {
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
+  background:
     radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
     radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.3) 0%, transparent 50%);
   animation: pulse 8s ease-in-out infinite;
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.8; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
 }
 
 .hero-content {
@@ -234,6 +246,135 @@ p {
   background: rgba(255, 255, 255, 0.2);
   border-color: rgba(255, 255, 255, 0.4);
   transform: translateY(-2px);
+}
+
+/* ===================================
+   Chrome-Style Install Button
+   =================================== */
+.chrome-install-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: var(--spacing-md);
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.btn-chrome {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0 4px 20px rgba(26, 115, 232, 0.4),
+    0 0 0 0 rgba(26, 115, 232, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-chrome::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent);
+  transition: left 0.5s;
+}
+
+.btn-chrome:hover::before {
+  left: 100%;
+}
+
+.btn-chrome:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow:
+    0 8px 30px rgba(26, 115, 232, 0.5),
+    0 0 0 4px rgba(26, 115, 232, 0.2);
+}
+
+.btn-chrome:active {
+  transform: translateY(-1px) scale(1.01);
+}
+
+.chrome-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 50%;
+  padding: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chrome-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.chrome-action {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.chrome-meta {
+  font-size: 0.8rem;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+.browser-compat {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.compat-item {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Pulse animation for the button */
+@keyframes chromePulse {
+
+  0%,
+  100% {
+    box-shadow:
+      0 4px 20px rgba(26, 115, 232, 0.4),
+      0 0 0 0 rgba(26, 115, 232, 0.4);
+  }
+
+  50% {
+    box-shadow:
+      0 4px 20px rgba(26, 115, 232, 0.4),
+      0 0 0 8px rgba(26, 115, 232, 0);
+  }
+}
+
+.btn-chrome {
+  animation: chromePulse 2s ease-in-out infinite;
+}
+
+.btn-chrome:hover {
+  animation: none;
 }
 
 /* ===================================
@@ -468,6 +609,7 @@ p {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -486,33 +628,49 @@ p {
   .hero {
     min-height: 80vh;
   }
-  
+
   .hero-subtitle {
     font-size: 1.25rem;
   }
-  
+
   .hero-buttons {
     flex-direction: column;
   }
-  
+
   .btn {
     width: 100%;
     justify-content: center;
   }
-  
+
+  .btn-chrome {
+    padding: 0.875rem 2rem;
+  }
+
+  .chrome-action {
+    font-size: 1.1rem;
+  }
+
+  .browser-compat {
+    gap: 1rem;
+  }
+
+  .compat-item {
+    font-size: 0.75rem;
+  }
+
   .section {
     padding: var(--spacing-lg) 0;
   }
-  
+
   .features-grid,
   .steps {
     grid-template-columns: 1fr;
   }
-  
+
   .tech-logos {
     gap: var(--spacing-md);
   }
-  
+
   .tech-logo img {
     height: 40px;
   }
@@ -524,15 +682,15 @@ p {
     --spacing-lg: 2rem;
     --spacing-xl: 3rem;
   }
-  
+
   h1 {
     font-size: 2rem;
   }
-  
+
   h2 {
     font-size: 1.75rem;
   }
-  
+
   .container {
     padding: 0 var(--spacing-sm);
   }
@@ -545,12 +703,34 @@ p {
   text-align: center;
 }
 
-.mt-1 { margin-top: var(--spacing-xs); }
-.mt-2 { margin-top: var(--spacing-sm); }
-.mt-3 { margin-top: var(--spacing-md); }
-.mt-4 { margin-top: var(--spacing-lg); }
+.mt-1 {
+  margin-top: var(--spacing-xs);
+}
 
-.mb-1 { margin-bottom: var(--spacing-xs); }
-.mb-2 { margin-bottom: var(--spacing-sm); }
-.mb-3 { margin-bottom: var(--spacing-md); }
-.mb-4 { margin-bottom: var(--spacing-lg); }
+.mt-2 {
+  margin-top: var(--spacing-sm);
+}
+
+.mt-3 {
+  margin-top: var(--spacing-md);
+}
+
+.mt-4 {
+  margin-top: var(--spacing-lg);
+}
+
+.mb-1 {
+  margin-bottom: var(--spacing-xs);
+}
+
+.mb-2 {
+  margin-bottom: var(--spacing-sm);
+}
+
+.mb-3 {
+  margin-bottom: var(--spacing-md);
+}
+
+.mb-4 {
+  margin-bottom: var(--spacing-lg);
+}
