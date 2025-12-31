@@ -13,7 +13,7 @@ Supports **Google Gemini**, **OpenAI**, and **Groq** APIs.
 - **🍬 Universal Context**: Works on any website, analyzing the visible text to understand the recipient.
 - **🤖 Multi-Provider Support**: Choose between Gemini, OpenAI, or Groq for email generation.
 - **📄 Resume Integration**: Upload your PDF or DOCX resume once. It's automatically used to find connection points for every email.
-- **📝 Personal Notes**: Add custom instructions like "Keep it casual", "Mention I'm hiring", or "Ask for a coffee chat".
+- **📝 Personal Notes**: Add custom instructions like "Keep it casual", "Mention I'm looking for a job", or "Ask for a coffee chat".
 - **🔒 Privacy First**: Your API key, Resume, and Notes are stored **locally** in your browser (`chrome.storage.sync`). Nothing is sent to our servers.
 
 ## Installation

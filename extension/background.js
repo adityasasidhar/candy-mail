@@ -73,41 +73,66 @@ async function generateEmail(pageData, settings) {
 
 // Build the prompt for email generation
 function buildPrompt(pageData, resume, personalNote) {
-    return `You are a specialized cold email writer.
-     You're main job is to write cold emails for the SENDER to the RECIPIENT. I want you to write a 
-     great email for the person to the company and the job description that is being provided to you, I want you to
-     take the resume into account while writing the email, make sure you are making the email personal and concise.
-     Try to personalize mail by using web page content and mentioning them
+    // Get content - support both property names
+    const pageContent = pageData.clean_context || pageData.full_text || "";
+
+    // Build job-specific context if available
+    let jobContext = "";
+    if (pageData.job_data && pageData.job_data.title) {
+        const jd = pageData.job_data;
+        jobContext = `
+## Job Listing Details:
+- Job Title: ${jd.title || "N/A"}
+- Company: ${jd.company || "N/A"}
+- Location: ${jd.location || "N/A"}
+${jd.salary ? `- Salary: ${jd.salary}` : ""}
+${jd.details?.length ? `- Details: ${jd.details.join(", ")}` : ""}
+
+${jd.description ? `Job Description Summary:\n${jd.description.substring(0, 3000)}` : ""}
+`;
+    }
+
+    return `You are a specialized cold email writer helping job seekers land interviews.
+Your main job is to write compelling, personalized cold emails for the SENDER to the RECIPIENT (hiring manager/company).
+
+**Key Requirements:**
+- Make the email personal and concise (3-4 paragraphs max)
+- Reference specific details from the job posting to show genuine interest
+- Connect the sender's skills/experience directly to job requirements
+- Be professional but warm and conversational
+- Include a soft call-to-action (request for a brief chat, coffee meeting, etc.)
     
-    ---
+---
 
-    ## SENDER's Resume/Profile:
-    ${resume || "Not provided"}
+## SENDER's Resume/Profile:
+${resume || "Not provided - use generic introduction"}
 
-    ---
+---
 
-    ## RECIPIENT's Information (from the webpage being viewed):
-    Platform: ${pageData.platform || "Unknown"}
-    URL: ${pageData.url || "Unknown"}
+## RECIPIENT's Information (from the webpage being viewed):
+Platform: ${pageData.platform || "Unknown"}
+URL: ${pageData.url || "Unknown"}
+${jobContext}
 
-    Webpage Content (about the RECIPIENT):
-    ${(pageData.full_text || "")}
+## Full Webpage Content:
+${pageContent.substring(0, 8000)}
 
-    ## Additional Instructions from the SENDER:
-    ${personalNote || "None"}
+## Additional Instructions from the SENDER:
+${personalNote || "None"}
 
-    ---
+---
 
-    ## Task:
-    Write a cold email FROM the sender TO the recipient. The email should:
-    1. Be addressed to the recipient (the person/company from the webpage)
-    2. Introduce the sender (based on their resume)
-    3. Reference specific details from the recipient's profile/page to show genuine interest
-    4. Highlight relevant connections between the sender's background and the recipient
-    5. Be concise, professional, and engaging
-    6. Have a clear but soft call-to-action
+## Task:
+Write a cold email FROM the sender TO the recipient (the company/hiring manager from the job posting). The email should:
+1. Address the recipient appropriately (use company name if specific person unknown)
+2. Open with a hook that shows you've researched their company/role
+3. Briefly introduce the sender with 2-3 most relevant qualifications
+4. Connect sender's experience to specific job requirements mentioned
+5. Show genuine enthusiasm for the role/company
+6. End with a clear but soft call-to-action
 
-    Provide ONLY the email body, no subject line. Start directly with the greeting (e.g., "Hi [Recipient's Name]," or "Dear [Name],").`;
+**Output Format:**
+Provide ONLY the email body, no subject line. Start directly with the greeting (e.g., "Hi [Hiring Team/Name]," or "Dear [Name],").`
 }
 
 // Listen for messages from popup
