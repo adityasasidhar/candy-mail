@@ -12,6 +12,8 @@
             --text: #451a03;
             --text-label: #78350f;
             --border: #fbbf24;
+            --danger: #dc2626;
+            --danger-light: #fef2f2;
         }
 
         body {
@@ -23,7 +25,7 @@
         }
 
         .container {
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto;
             background: var(--card-bg);
             padding: 32px;
@@ -42,6 +44,31 @@
 
         .section {
             margin-bottom: 24px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-weight: 600;
+            color: var(--text-label);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .doc-count {
+            background: var(--primary);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
         }
 
         label {
@@ -74,23 +101,132 @@
         }
 
         textarea {
-            height: 200px;
+            height: 150px;
             font-family: monospace;
             font-size: 13px;
         }
 
-        .file-input-wrapper {
-            background: #fef9c3;
-            border: 1px dashed var(--border);
-            padding: 16px;
-            border-radius: 6px;
-            text-align: center;
+        /* Document Cards */
+        .documents-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
-        .file-hint {
+        .document-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s;
+        }
+
+        .document-card:hover {
+            border-color: var(--primary);
+        }
+
+        .doc-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .doc-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .doc-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .doc-meta {
+            font-size: 12px;
+            color: #64748b;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .doc-label-select {
+            padding: 4px 8px;
+            font-size: 12px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            background: white;
+            cursor: pointer;
+        }
+
+        .doc-delete {
+            background: var(--danger-light);
+            color: var(--danger);
+            border: none;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .doc-delete:hover {
+            background: var(--danger);
+            color: white;
+        }
+
+        /* Add Document Button */
+        .add-document-wrapper {
+            border: 2px dashed var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #fef9c3;
+        }
+
+        .add-document-wrapper:hover {
+            border-color: var(--primary);
+            background: #fef3c7;
+        }
+
+        .add-document-wrapper.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .add-document-wrapper input {
+            display: none;
+        }
+
+        .add-document-label {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .add-document-hint {
             font-size: 12px;
             color: #64748b;
             margin-top: 4px;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 24px;
+            color: #64748b;
+            font-size: 14px;
         }
 
         button#saveBtn {
@@ -107,7 +243,7 @@
         }
 
         button#saveBtn:hover {
-            background-color: #1d4ed8;
+            background-color: #b45309;
         }
 
         #status {
@@ -172,24 +308,34 @@
             <div class="help-text">Select which model to use for email generation.</div>
         </div>
 
+        <!-- Multi-Document Section -->
         <div class="section">
-            <label>My Profile / Resume Context</label>
-
-            <div class="file-input-wrapper">
-                <label for="resumeFile" style="cursor: pointer; color: var(--primary); margin:0;">Click to Upload PDF or
-                    DOCX</label>
-                <input type="file" id="resumeFile" accept=".pdf,.docx" style="display: none;">
-                <div class="file-hint">Content will be extracted and pasted below automatically.</div>
+            <div class="section-header">
+                <div class="section-title">
+                    📄 Context Documents
+                    <span class="doc-count" id="docCount">0/5</span>
+                </div>
             </div>
 
-            <div style="margin-top: 12px;">
-                <textarea id="resume" placeholder="# My Resume\n\nExperience:\n- Senior Developer at..."></textarea>
+            <div class="documents-container" id="documentsContainer">
+                <!-- Document cards will be rendered here -->
+                <div class="empty-state" id="emptyState">
+                    No documents uploaded yet. Add your resume, cover letter, or other context.
+                </div>
+            </div>
+
+            <div class="add-document-wrapper" id="addDocumentWrapper" style="margin-top: 12px;">
+                <input type="file" id="documentFile" accept=".pdf,.docx,.txt" multiple>
+                <label for="documentFile" class="add-document-label">
+                    ➕ Add Document (PDF, DOCX, or TXT)
+                </label>
+                <div class="add-document-hint">Upload up to 5 documents for context</div>
             </div>
         </div>
 
         <div class="section">
             <label for="personalNote">Personal Note / Instructions (Optional)</label>
-            <textarea id="personalNote" placeholder="E.g. No em dashes and emojis please..."
+            <textarea id="personalNote" placeholder="E.g. Keep it formal, mention I'm looking for SDE intern roles..."
                 style="height: 100px;"></textarea>
             <div class="help-text">This guides how your emails are written.</div>
         </div>

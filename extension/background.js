@@ -36,8 +36,8 @@ const PROVIDERS = {
 };
 
 // Generate email using selected provider
-async function generateEmail(pageData, settings) {
-    const { apiKey, provider, model, resume, personalNote } = settings;
+async function generateEmail(pageData, settings, documents) {
+    const { apiKey, provider, model, personalNote } = settings;
 
     if (!apiKey) throw new Error("API key not configured. Please go to Settings.");
     if (!provider || !PROVIDERS[provider]) throw new Error("Invalid provider selected.");
@@ -45,7 +45,7 @@ async function generateEmail(pageData, settings) {
     const providerConfig = PROVIDERS[provider];
     const selectedModel = model || providerConfig.defaultModel;
 
-    const prompt = buildPrompt(pageData, resume, personalNote);
+    const prompt = buildPrompt(pageData, documents, personalNote);
     const endpoint = providerConfig.getEndpoint(selectedModel);
     const { headers, body } = providerConfig.buildRequest(apiKey, prompt);
 
@@ -72,11 +72,19 @@ async function generateEmail(pageData, settings) {
 }
 
 // Build the prompt for email generation
-function buildPrompt(pageData, resume, personalNote) {
+function buildPrompt(pageData, documents, personalNote) {
     // Get content - support both property names
     const pageContent = pageData.clean_context || pageData.full_text || "";
 
-    // Build job-specific context if available
+    // Build documents context from all uploaded documents
+    let documentsContext = "";
+    if (documents && documents.length > 0) {
+        documentsContext = documents.map(doc =>
+            `### ${doc.label}:\n${doc.content}`
+        ).join("\n\n");
+    } else {
+        documentsContext = "Not provided - use generic introduction";
+    }
     let jobContext = "";
     if (pageData.job_data && pageData.job_data.title) {
         const jd = pageData.job_data;
@@ -92,47 +100,72 @@ ${jd.description ? `Job Description Summary:\n${jd.description.substring(0, 3000
 `;
     }
 
-    return `You are a specialized cold email writer helping job seekers land interviews.
-Your main job is to write compelling, personalized cold emails for the SENDER to the RECIPIENT (hiring manager/company).
+    return `You are an expert cold email copywriter who has helped thousands of job seekers land interviews at top companies. Your emails have exceptional open and response rates because they feel genuine, specific, and compelling.
 
-**Key Requirements:**
-- Make the email personal and concise (3-4 paragraphs max)
-- Reference specific details from the job posting to show genuine interest
-- Connect the sender's skills/experience directly to job requirements
-- Be professional but warm and conversational
-- Include a soft call-to-action (request for a brief chat, coffee meeting, etc.)
-    
+## YOUR WRITING PHILOSOPHY:
+- **Brevity is power**: 150 words max. Hiring managers skim emails in 10 seconds.
+- **Specificity wins**: Generic flattery fails. Reference exact details from their job posting/company.
+- **Human first**: Write like a real person, not a template. No corporate jargon.
+- **Value-oriented**: Show what YOU bring to THEM, not just what you want.
+
+## AVOID THESE ANTI-PATTERNS (instant delete triggers):
+❌ "I hope this email finds you well"
+❌ "I am writing to express my interest in..."
+❌ "I believe I would be a great fit"
+❌ "Please find my resume attached"
+❌ Starting with "My name is..."
+❌ Listing generic skills without context
+❌ Being overly formal or stiff
+❌ Using em dashes (—) excessively
+❌ Exclamation marks overuse
+
+## WINNING EMAIL STRUCTURE:
+
+**Opening Hook (1-2 sentences):**
+Start with something specific that caught your attention - a recent company news, product feature, job requirement, or industry insight. Show you did your homework.
+
+**The Connection (2-3 sentences):**
+Bridge your background to their specific needs. Use concrete numbers, project names, or outcomes. "At [Company], I [specific achievement] that [measurable result]."
+
+**The Ask (1 sentence):**
+Soft, low-commitment CTA. "Would you be open to a brief chat this week?" or "Happy to share more details if helpful."
+
+**Sign-off:**
+Simple. "Best, [Name]" or "Thanks, [Name]"
+
 ---
 
-## SENDER's Resume/Profile:
-${resume || "Not provided - use generic introduction"}
+## SENDER'S PROFILE & DOCUMENTS:
+${documentsContext}
 
 ---
 
-## RECIPIENT's Information (from the webpage being viewed):
+## RECIPIENT INFO (from webpage):
 Platform: ${pageData.platform || "Unknown"}
 URL: ${pageData.url || "Unknown"}
 ${jobContext}
 
-## Full Webpage Content:
+## WEBPAGE CONTENT:
 ${pageContent.substring(0, 8000)}
 
-## Additional Instructions from the SENDER:
+## SENDER'S ADDITIONAL NOTES:
 ${personalNote || "None"}
 
 ---
 
-## Task:
-Write a cold email FROM the sender TO the recipient (the company/hiring manager from the job posting). The email should:
-1. Address the recipient appropriately (use company name if specific person unknown)
-2. Open with a hook that shows you've researched their company/role
-3. Briefly introduce the sender with 2-3 most relevant qualifications
-4. Connect sender's experience to specific job requirements mentioned
-5. Show genuine enthusiasm for the role/company
-6. End with a clear but soft call-to-action
+## YOUR TASK:
+Write a cold email that will make the recipient want to respond. 
 
-**Output Format:**
-Provide ONLY the email body, no subject line. Start directly with the greeting (e.g., "Hi [Hiring Team/Name]," or "Dear [Name],").`
+**Requirements:**
+1. Hook them in the first line with something specific to THEM
+2. Connect sender's experience to their EXACT needs (reference the job posting)
+3. Include at least one concrete metric or achievement from sender's background
+4. Keep it under 150 words
+5. Sound like a confident professional, not a desperate job seeker
+6. End with a low-friction ask
+
+**Output:**
+Email body only. Start with a greeting like "Hi [Name/Team]," — no subject line.`
 }
 
 // Listen for messages from popup
@@ -147,8 +180,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 // Handle the email generation flow
 async function handleGenerateEmail(tabId) {
-    // Get user settings
-    const settings = await chrome.storage.sync.get(["apiKey", "provider", "model", "resume", "personalNote"]);
+    // Get user settings from sync storage
+    const settings = await chrome.storage.sync.get(["apiKey", "provider", "model", "personalNote"]);
+
+    // Get documents from local storage
+    const localData = await chrome.storage.local.get(["documents"]);
+    const documents = localData.documents || [];
 
     // Inject and execute scraper
     const results = await chrome.scripting.executeScript({
@@ -166,7 +203,7 @@ async function handleGenerateEmail(tabId) {
         throw new Error("Scraper error: " + pageData.error);
     }
 
-    return await generateEmail(pageData, settings);
+    return await generateEmail(pageData, settings, documents);
 }
 
 // Expose PROVIDERS for options page
