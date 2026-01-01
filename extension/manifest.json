@@ -20,10 +20,26 @@
     },
     "action": {
         "default_popup": "popup.html",
-        "default_title": "Draft Cold Email"
+        "default_title": "Draft Cold Email (Alt+C)"
     },
     "options_page": "options.html",
     "background": {
         "service_worker": "background.js"
+    },
+    "commands": {
+        "_execute_action": {
+            "suggested_key": {
+                "default": "Alt+C",
+                "mac": "Alt+C"
+            },
+            "description": "Open Candy Mail popup"
+        },
+        "generate_email": {
+            "suggested_key": {
+                "default": "Alt+G",
+                "mac": "Alt+G"
+            },
+            "description": "Generate email from current page"
+        }
     }
 }

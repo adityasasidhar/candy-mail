@@ -17,10 +17,17 @@
       --accent-light: #818cf8;
       --border: rgba(255, 255, 255, 0.08);
       --border-light: rgba(255, 255, 255, 0.12);
+      --success: #22c55e;
+      --error: #ef4444;
+      --warning: #f59e0b;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
-      width: 380px;
+      width: 420px;
       padding: 0;
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
@@ -30,15 +37,16 @@
     }
 
     .container {
-      padding: 20px;
+      padding: 16px;
     }
 
+    /* Header */
     header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 20px;
-      padding-bottom: 16px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
       border-bottom: 1px solid var(--border);
     }
 
@@ -49,17 +57,23 @@
     }
 
     h1 {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 600;
       margin: 0;
       color: var(--text);
       letter-spacing: -0.01em;
     }
 
-    .settings-btn {
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon-btn {
       background: none;
       border: none;
-      color: var(--text-secondary);
+      color: var(--text-tertiary);
       cursor: pointer;
       padding: 6px;
       border-radius: 6px;
@@ -67,37 +81,63 @@
       align-items: center;
       justify-content: center;
       transition: all 0.15s ease;
-      width: auto;
+      width: 28px;
+      height: 28px;
     }
 
-    .settings-btn:hover {
+    .icon-btn:hover {
       background: var(--bg-hover);
       color: var(--text);
     }
 
-    .status-badge {
-      font-size: 11px;
-      padding: 4px 10px;
-      border-radius: 100px;
+    .icon-btn.active {
+      background: var(--accent);
+      color: white;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 16px;
       background: var(--bg-card);
-      color: var(--text-secondary);
-      display: none;
+      padding: 4px;
+      border-radius: 10px;
+    }
+
+    .tab {
+      flex: 1;
+      padding: 8px 12px;
+      background: transparent;
+      border: none;
+      color: var(--text-tertiary);
+      font-size: 12px;
       font-weight: 500;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.15s ease;
     }
 
-    .status-badge.loading {
-      display: inline-block;
-      background: rgba(99, 102, 241, 0.15);
-      color: var(--accent-light);
+    .tab:hover {
+      color: var(--text-secondary);
     }
 
-    .status-badge.error {
-      display: inline-block;
-      background: rgba(239, 68, 68, 0.15);
-      color: #f87171;
+    .tab.active {
+      background: var(--bg-hover);
+      color: var(--text);
     }
 
-    button {
+    /* Generate Section */
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    /* Primary Button */
+    .btn-primary {
       width: 100%;
       padding: 12px 16px;
       background-color: var(--accent);
@@ -106,7 +146,7 @@
       border-radius: 10px;
       cursor: pointer;
       font-weight: 500;
-      font-size: 14px;
+      font-size: 13px;
       transition: all 0.2s ease;
       display: flex;
       align-items: center;
@@ -114,38 +154,84 @@
       gap: 8px;
     }
 
-    button:hover {
+    .btn-primary:hover {
       background-color: var(--accent-light);
-      transform: scale(1.01);
     }
 
-    button:disabled {
+    .btn-primary:disabled {
       background-color: var(--bg-card);
       color: var(--text-tertiary);
       cursor: not-allowed;
-      transform: none;
     }
 
+    /* Progress Bar */
+    .progress-container {
+      margin-top: 12px;
+      display: none;
+    }
+
+    .progress-container.active {
+      display: block;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-tertiary);
+      margin-bottom: 6px;
+    }
+
+    .progress-bar {
+      height: 4px;
+      background: var(--bg-card);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      border-radius: 2px;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .progress-fill.indeterminate {
+      width: 30%;
+      animation: indeterminate 1.5s ease-in-out infinite;
+    }
+
+    @keyframes indeterminate {
+      0% {
+        transform: translateX(-100%);
+      }
+
+      100% {
+        transform: translateX(400%);
+      }
+    }
+
+    /* Output Container */
     .output-container {
-      margin-top: 16px;
+      margin-top: 12px;
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 10px;
       overflow: hidden;
     }
 
     textarea {
       width: 100%;
-      height: 220px;
-      padding: 14px;
+      height: 180px;
+      padding: 12px;
       border: none;
       resize: none;
       font-family: inherit;
-      font-size: 13px;
+      font-size: 12px;
       line-height: 1.6;
       color: var(--text);
       background: transparent;
-      box-sizing: border-box;
       outline: none;
     }
 
@@ -155,31 +241,198 @@
 
     .actions {
       display: flex;
-      gap: 8px;
-      padding: 10px 14px;
+      gap: 6px;
+      padding: 8px 12px;
       background: var(--bg-secondary);
       border-top: 1px solid var(--border);
     }
 
-    .sml-btn {
-      padding: 8px 14px;
-      font-size: 12px;
+    .btn-small {
+      padding: 6px 12px;
+      font-size: 11px;
       background: var(--bg-card);
       color: var(--text-secondary);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      width: auto;
+      border-radius: 6px;
+      cursor: pointer;
       font-weight: 500;
+      transition: all 0.15s ease;
     }
 
-    .sml-btn:hover {
+    .btn-small:hover {
       background: var(--bg-hover);
       color: var(--text);
       border-color: var(--border-light);
-      transform: none;
     }
 
-    /* Loader */
+    .btn-small.success {
+      background: rgba(34, 197, 94, 0.15);
+      color: var(--success);
+      border-color: transparent;
+    }
+
+    /* Error Message */
+    .error-container {
+      display: none;
+      margin-top: 12px;
+      padding: 12px;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      border-radius: 10px;
+    }
+
+    .error-container.active {
+      display: block;
+    }
+
+    .error-title {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--error);
+      margin-bottom: 6px;
+    }
+
+    .error-message {
+      font-size: 11px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .error-help {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(239, 68, 68, 0.1);
+      font-size: 11px;
+      color: var(--text-tertiary);
+    }
+
+    .error-help a {
+      color: var(--accent-light);
+      text-decoration: none;
+    }
+
+    /* History Section */
+    .history-list {
+      max-height: 350px;
+      overflow-y: auto;
+    }
+
+    .history-empty {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-tertiary);
+    }
+
+    .history-empty-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+      opacity: 0.5;
+    }
+
+    .history-empty-text {
+      font-size: 13px;
+    }
+
+    .history-item {
+      padding: 12px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .history-item:hover {
+      background: var(--bg-card);
+    }
+
+    .history-item:last-child {
+      border-bottom: none;
+    }
+
+    .history-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .history-source {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text);
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .history-time {
+      font-size: 10px;
+      color: var(--text-tertiary);
+    }
+
+    .history-preview {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .history-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .history-btn {
+      padding: 4px 8px;
+      font-size: 10px;
+      background: var(--bg-hover);
+      color: var(--text-secondary);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .history-btn:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    .history-btn.delete:hover {
+      background: var(--error);
+    }
+
+    /* Clear History */
+    .clear-history {
+      padding: 12px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .clear-history-btn {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .clear-history-btn:hover {
+      background: rgba(239, 68, 68, 0.1);
+      color: var(--error);
+    }
+
+    /* Spinner */
     .spinner {
       width: 14px;
       height: 14px;
@@ -196,12 +449,30 @@
       }
     }
 
-    button.loading .spinner {
+    .btn-primary.loading .spinner {
       display: inline-block;
     }
 
-    button.loading .btn-text {
+    .btn-primary.loading .btn-text {
       opacity: 0.7;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-light);
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--text-tertiary);
     }
   </style>
 </head>
@@ -212,19 +483,73 @@
       <div class="logo">
         <h1>Candy Mail</h1>
       </div>
-      <span id="statusBadge" class="status-badge"></span>
+      <div class="header-actions">
+        <button class="icon-btn" id="settingsBtn" title="Settings">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3" />
+            <path
+              d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+          </svg>
+        </button>
+      </div>
     </header>
 
-    <button id="generateBtn">
-      <span class="spinner"></span>
-      <span class="btn-text">Generate Email</span>
-    </button>
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" data-tab="generate">Generate</button>
+      <button class="tab" data-tab="history">History <span id="historyCount"></span></button>
+    </div>
 
-    <div class="output-container">
-      <textarea id="output"
-        placeholder="Click 'Generate' to create a personalized email based on this page..."></textarea>
-      <div class="actions">
-        <button id="copyBtn" class="sml-btn">Copy</button>
+    <!-- Generate Section -->
+    <div class="section active" id="generateSection">
+      <button class="btn-primary" id="generateBtn">
+        <span class="spinner"></span>
+        <span class="btn-text">Generate Email</span>
+      </button>
+
+      <div class="progress-container" id="progressContainer">
+        <div class="progress-label">
+          <span id="progressStatus">Analyzing page...</span>
+          <span id="progressPercent">0%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <div class="error-container" id="errorContainer">
+        <div class="error-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
+          </svg>
+          <span id="errorTitle">Error</span>
+        </div>
+        <div class="error-message" id="errorMessage"></div>
+        <div class="error-help" id="errorHelp"></div>
+      </div>
+
+      <div class="output-container" id="outputContainer">
+        <textarea id="output"
+          placeholder="Click 'Generate' to create a personalized email based on this page..."></textarea>
+        <div class="actions">
+          <button class="btn-small" id="copyBtn">Copy</button>
+          <button class="btn-small" id="regenerateBtn">Regenerate</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- History Section -->
+    <div class="section" id="historySection">
+      <div class="history-list" id="historyList">
+        <div class="history-empty" id="historyEmpty">
+          <div class="history-empty-icon">📭</div>
+          <div class="history-empty-text">No emails generated yet</div>
+        </div>
+      </div>
+      <div class="clear-history" id="clearHistoryContainer" style="display: none;">
+        <button class="clear-history-btn" id="clearHistoryBtn">Clear All History</button>
       </div>
     </div>
   </div>

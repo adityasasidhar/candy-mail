@@ -6,6 +6,7 @@
     "permissions": [
         "activeTab",
         "storage",
+        "clipboardWrite",
         "https://linkedin.com/*",
         "https://api.linkedin.com/*"
     ],
@@ -17,7 +18,7 @@
     },
     "browser_action": {
         "default_popup": "popup.html",
-        "default_title": "Draft Cold Email",
+        "default_title": "Draft Cold Email (Alt+C)",
         "default_icon": {
             "16": "icons/icon16.png",
             "32": "icons/icon32.png"
@@ -28,7 +29,25 @@
         "open_in_tab": true
     },
     "background": {
-        "scripts": ["background.js"]
+        "scripts": [
+            "background.js"
+        ]
+    },
+    "commands": {
+        "_execute_browser_action": {
+            "suggested_key": {
+                "default": "Alt+C",
+                "mac": "Alt+C"
+            },
+            "description": "Open Candy Mail popup"
+        },
+        "generate_email": {
+            "suggested_key": {
+                "default": "Alt+G",
+                "mac": "Alt+G"
+            },
+            "description": "Generate email from current page"
+        }
     },
     "browser_specific_settings": {
         "gecko": {

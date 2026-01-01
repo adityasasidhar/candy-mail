@@ -2,8 +2,8 @@
 const PROVIDERS = {
     gemini: {
         name: "Google Gemini",
-        models: ["gemini-2.0-flash", "gemini-1.5-flash", "gemini-1.5-pro"],
-        defaultModel: "gemini-2.0-flash",
+        models: ["gemini-2.5-flash", "gemini-2.5-pro", "gemini-2.5-flash-lite"],
+        defaultModel: "gemini-2.5-flash",
         getEndpoint: (model) => `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
         buildRequest: (apiKey, prompt) => ({
             headers: { "Content-Type": "application/json", "x-goog-api-key": apiKey },
@@ -13,8 +13,8 @@ const PROVIDERS = {
     },
     openai: {
         name: "OpenAI",
-        models: ["gpt-4o", "gpt-4o-mini", "o1", "o1-mini", "o3-mini"],
-        defaultModel: "gpt-4o-mini",
+        models: ["gpt-5.2-pro", "gpt-4.1", "gpt-5.2", "gpt-5-mini", "gpt-5-nano"],
+        defaultModel: "gpt-5-nano",
         getEndpoint: () => "https://api.openai.com/v1/chat/completions",
         buildRequest: (apiKey, prompt) => ({
             headers: { "Content-Type": "application/json", "Authorization": `Bearer ${apiKey}` },
@@ -24,8 +24,8 @@ const PROVIDERS = {
     },
     anthropic: {
         name: "Anthropic",
-        models: ["claude-sonnet-4-20250514", "claude-3-5-sonnet-20241022", "claude-3-5-haiku-20241022"],
-        defaultModel: "claude-sonnet-4-20250514",
+        models: ["claude-sonnet-4-5", "claude-haiku-4-5", "claude-opus-4-5"],
+        defaultModel: "claude-haiku-4-5",
         getEndpoint: () => "https://api.anthropic.com/v1/messages",
         buildRequest: (apiKey, prompt) => ({
             headers: {
@@ -44,8 +44,8 @@ const PROVIDERS = {
     },
     mistral: {
         name: "Mistral AI",
-        models: ["mistral-large-latest", "mistral-small-latest", "codestral-latest"],
-        defaultModel: "mistral-large-latest",
+        models: ["mistral-large", "mistral-medium", "mistral-small", "mistral-mini",],
+        defaultModel: "mistral-medium",
         getEndpoint: () => "https://api.mistral.ai/v1/chat/completions",
         buildRequest: (apiKey, prompt) => ({
             headers: { "Content-Type": "application/json", "Authorization": `Bearer ${apiKey}` },
@@ -55,8 +55,8 @@ const PROVIDERS = {
     },
     groq: {
         name: "Groq",
-        models: ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "mixtral-8x7b-32768"],
-        defaultModel: "llama-3.3-70b-versatile",
+        models: ["llama-3.3-70b-versatile", "openai/gpt-oss-20b", "openai/gpt-oss-120b", "meta-llama/llama-4-maverick-17b-128e-instruct", "meta-llama/llama-4-scout-17b-16e-instruct",],
+        defaultModel: "openai/gpt-oss-120b",
         getEndpoint: () => "https://api.groq.com/openai/v1/chat/completions",
         buildRequest: (apiKey, prompt) => ({
             headers: { "Content-Type": "application/json", "Authorization": `Bearer ${apiKey}` },
@@ -194,6 +194,11 @@ Write a cold email that will make the recipient want to respond.
 4. Keep it under 150 words
 5. Sound like a confident professional, not a desperate job seeker
 6. End with a low-friction ask
+7. You need not deviate from the job posting
+8. Do not make up any information, no lying, no fake achievements and compliments
+9. Try to use the job posting as much as possible
+10. Do not use any generic or cliched phrases
+11. Start with a nice introductions, then move on to the main content
 
 **Output:**
 Email body only. Start with a greeting like "Hi [Name/Team]," — no subject line.`
@@ -206,6 +211,43 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
             .then(email => sendResponse({ email }))
             .catch(err => sendResponse({ error: err.message }));
         return true; // Keep channel open for async response
+    }
+});
+
+// Listen for keyboard commands
+browser.commands.onCommand.addListener(async (command) => {
+    if (command === "generate_email") {
+        try {
+            // Get active tab
+            const tabs = await browser.tabs.query({ active: true, currentWindow: true });
+            const tab = tabs[0];
+            if (!tab) return;
+
+            // Show badge while generating
+            await browser.browserAction.setBadgeText({ text: "..." });
+            await browser.browserAction.setBadgeBackgroundColor({ color: "#6366f1" });
+
+            // Generate the email
+            const email = await handleGenerateEmail(tab.id);
+
+            // Copy to clipboard
+            await navigator.clipboard.writeText(email);
+
+            // Show success badge
+            await browser.browserAction.setBadgeText({ text: "✓" });
+            await browser.browserAction.setBadgeBackgroundColor({ color: "#22c55e" });
+            setTimeout(async () => {
+                await browser.browserAction.setBadgeText({ text: "" });
+            }, 3000);
+
+        } catch (err) {
+            await browser.browserAction.setBadgeText({ text: "!" });
+            await browser.browserAction.setBadgeBackgroundColor({ color: "#ef4444" });
+            setTimeout(async () => {
+                await browser.browserAction.setBadgeText({ text: "" });
+            }, 3000);
+            console.error("Generate email error:", err);
+        }
     }
 });
 

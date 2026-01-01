@@ -2,32 +2,32 @@
 const PROVIDERS = {
     gemini: {
         name: "Google Gemini",
-        models: ["gemini-2.0-flash", "gemini-1.5-flash", "gemini-1.5-pro"],
-        defaultModel: "gemini-2.0-flash",
+        models: ["gemini-2.5-flash", "gemini-2.5-pro", "gemini-2.5-flash-lite"],
+        defaultModel: "gemini-2.5-flash",
         keyPlaceholder: "AIza..."
     },
     openai: {
         name: "OpenAI",
-        models: ["gpt-4o", "gpt-4o-mini", "o1", "o1-mini", "o3-mini"],
-        defaultModel: "gpt-4o-mini",
+        models: ["gpt-5.2-pro", "gpt-4.1", "gpt-5.2", "gpt-5-mini", "gpt-5-nano"],
+        defaultModel: "gpt-5-nano",
         keyPlaceholder: "sk-..."
     },
     anthropic: {
         name: "Anthropic",
-        models: ["claude-sonnet-4-20250514", "claude-3-5-sonnet-20241022", "claude-3-5-haiku-20241022"],
-        defaultModel: "claude-sonnet-4-20250514",
+        models: ["claude-sonnet-4-5", "claude-haiku-4-5", "claude-opus-4-5"],
+        defaultModel: "claude-sonnet-4-5",
         keyPlaceholder: "sk-ant-..."
     },
     mistral: {
         name: "Mistral AI",
-        models: ["mistral-large-latest", "mistral-small-latest", "codestral-latest"],
-        defaultModel: "mistral-large-latest",
+        models: ["mistral-large", "mistral-medium", "mistral-small", "mistral-mini"],
+        defaultModel: "mistral-medium",
         keyPlaceholder: "..."
     },
     groq: {
         name: "Groq",
-        models: ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "mixtral-8x7b-32768"],
-        defaultModel: "llama-3.3-70b-versatile",
+        models: ["llama-3.3-70b-versatile", "openai/gpt-oss-20b", "openai/gpt-oss-120b", "meta-llama/llama-4-maverick-17b-128e-instruct", "meta-llama/llama-4-scout-17b-16e-instruct"],
+        defaultModel: "openai/gpt-oss-120b",
         keyPlaceholder: "gsk_..."
     }
 };
