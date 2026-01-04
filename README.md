@@ -49,11 +49,9 @@ Available for **Chrome** and **Firefox**. Supports **Google Gemini**, **OpenAI**
 5. Select the `extension` folder
 
 ### Firefox
-1. Download the Firefox extension from our website
-2. Open Firefox and navigate to `about:debugging`
-3. Click **This Firefox** in the sidebar
-4. Click **Load Temporary Add-on**
-5. Select any file from the `extension-firefox` folder
+1. **Install from Mozilla Add-ons**: [addons.mozilla.org/firefox/addon/candymail](https://addons.mozilla.org/en-US/firefox/addon/candymail/)
+2. Click **Add to Firefox**
+3. Done! The extension is ready to use.
 
 ---
 
